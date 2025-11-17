@@ -9,7 +9,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
-public class CSVLoaderTest {
+public class CSVParserTest {
 
     @Test
     public void testLoadQuestionsFromCSV() throws Exception {
@@ -21,8 +21,8 @@ public class CSVLoaderTest {
             fw.write("Science,200,Planet closest to sun?,Mercury\n");
         }
 
-        CSVLoader loader = new CSVLoader();
-        List<Question> list = loader.load(file.toString());
+        CSVParser loader = new CSVParser();
+        List<Question> list = loader.parseQuestions(file.toString());
 
         assertEquals(2, list.size());
         assertEquals("Math", list.get(0).getCategory());
