@@ -4,16 +4,24 @@ package com.uwi;
 public class Question {
     private String category;
     private int value;
-    private String text;
-    private String answer;
-    private boolean used;
+    private String questionText;
+    private String optionA;
+    private String optionB;
+    private String optionC;
+    private String optionD;
+    private String correctAnswer;
+    private boolean answered;
 
-    public Question(String category, int value, String text, String answer) {
+    public Question(String category, int value, String questionText, String optionA, String optionB, String optionC, String optionD, String correctAnswer) {
         this.category = category;
         this.value = value;
-        this.text = text;
-        this.answer = answer;
-        this.used = false;
+        this.questionText = questionText;
+        this.optionA = optionA;
+        this.optionB = optionB;
+        this.optionC = optionC;
+        this.optionD = optionD;
+        this.correctAnswer = correctAnswer;
+        this.answered = false;
     }
 
     public String getCategory() {
@@ -24,19 +32,53 @@ public class Question {
         return value;
     }
 
-    public String getText() {
-        return text;
+    public String getQuestionText() {
+        return questionText;
     }
 
-    public String getAnswer() {
-        return answer;
+    public String getOptionA() {
+        return optionA;
     }
 
-    public boolean isUsed() {
-        return used;
+    public String getOptionB() {
+        return optionB;
     }
 
-    public void markUsed() {
-        used = true;
+    public String getOptionC() {
+        return optionC;
+    }
+
+    public String getOptionD() {
+        return optionD;
+    }
+
+    public String getCorrectAnswer() {
+        return correctAnswer;
+    }
+
+    public boolean isAnswered() {
+        return answered;
+    }
+
+    public void setAnswered(boolean answered) {
+        this.answered = answered;
+    }
+
+    public boolean isCorrect(String answer) {
+        if (answer == null) {
+            return false;
+        }
+        return this.correctAnswer.equals(answer.toUpperCase());
+    }
+
+    @Override
+    public String toString() {
+        return "Category: " + category + "\n" +
+               "Value: " + value + "\n" +
+               "Question: " + questionText + "\n" +
+               "A: " + optionA + "\n" +
+               "B: " + optionB + "\n" +
+               "C: " + optionC + "\n" +
+               "D: " + optionD + "\n";
     }
 }
