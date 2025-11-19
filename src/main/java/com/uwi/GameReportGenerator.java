@@ -35,6 +35,7 @@ public class GameReportGenerator {
                     sb.append(", ");
                 }
             }
+            pw.println(sb.toString());
             
             pw.println("\nGameplay Summary: ");
             pw.println("-----------------");
@@ -58,7 +59,7 @@ public class GameReportGenerator {
                 pw.printf("%s: %d%n", p.getId(), p.getScore());
             }
 
-            System.out.println("\n Summary report saved: " + fileName);
+            System.out.println("\nSummary Report Saved: " + fileName);
         } catch (IOException e) {
             System.out.println("Unable to genrate report.");
         }

@@ -1,231 +1,210 @@
-/* package com.uwi;
-
-
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
-public class JeopardyGame extends GameTemplate {
-    private Scanner input = new Scanner(System.in);
-    private List<TurnRecord> turnRecords = new ArrayList<>();
-
-
-    public JeopardyGame(List<Player> players, List<Question> questions, Logger logger) {
-        super(players, questions, logger);
-    }
-
-    @Override
-    protected void setup() {
-        System.out.println("Welcome to Jeopardy!");
-        logger.logEvent("System", "Start Game", "", 0,"", "N/A", 0);
-    }
-
-    @Override
-    protected void playTurn() {
-        for (Player player : players) {
-            System.out.println("\n" + player.getId() + ", it's your turn!");
-            List<Question> available = questions.stream()
-                    .filter(q -> !q.isAnswered())
-                    .toList();
-
-            if (available.isEmpty()) return;
-
-            // show available questions
-            int i = 1;
-            for (Question q : available) {
-                System.out.println(i + ". [" + q.getCategory() + " - " + q.getValue() + "]");
-                i++;
-            }
-
-            System.out.print("Pick a question number: ");
-            int choice;
-            try {
-                choice = Integer.parseInt(input.nextLine());
-            } catch (Exception e) {
-                System.out.println("Invalid input. Turn skipped.");
-                continue;
-            }
-
-            if (choice < 1 || choice > available.size()) {
-                System.out.println("Invalid number. Turn skipped.");
-                continue;
-            }
-
-            Question q = available.get(choice - 1);
-            System.out.println("\nQuestion: " + q.getQuestionText());
-            System.out.print("Your answer: ");
-            String answer = input.nextLine();
-            boolean correct = answer.equalsIgnoreCase(q.getCorrectAnswer());
-            int points = correct ? q.getValue() : -q.getValue();
-            player.updateScore(points);
-            q.setAnswered(true);
-
-            String result = correct ? "Correct" : "Wrong";
-            System.out.println(result + "! You now have " + player.getScore() + " points.");
-            
-
-            logger.logEvent(player.getId(), "Answer Question", q.getCategory(), q.getValue(), answer, result, player.getScore());
-        }
-    }
-
-    @Override
-    protected boolean isGameOver() {
-        return questions.stream().allMatch(Question::isAnswered);
-    }
-
-    @Override
-    protected void endGame() {
-        System.out.println("\nGame Over!");
-        logger.logEvent("System", "Game End", "",0, "", "N/A", 0); 
-
-    
-        System.out.println("Final Scores:");
-        for (Player player : players) {
-            System.out.println(player.getId() + ": " + player.getScore() + " points");
-        }
-
-        GameReportGenerator report = new GameReportGenerator("GAME001", players, turRecords);
-        report.generate();
-
-        System.out.println("Summary saved to summary.txt");
-    }
-}
- */
-
- package com.uwi;
+package com.uwi;
 
 import java.util.*;
 import java.io.IOException;
 
-
 public class JeopardyGame extends GameTemplate {
+
     private Scanner input = new Scanner(System.in);
-    private List<Question> questions;
-    private Logger logger;
+    private List<Question> questions = new ArrayList<>();
     private List<TurnRecord> turnRecords = new ArrayList<>();
+    private Logger logger;
     private String caseId = "GAME001";
 
-    public JeopardyGame() {
-    }
+    public JeopardyGame() {}
 
     @Override
     protected void setup() {
         System.out.println("Welcome to Jeopardy!");
 
-        int numPlayers = 0;
-        while (numPlayers <= 0) {
-            try {
-                System.out.print("Enter number of players: ");
-                numPlayers = Integer.parseInt(input.nextLine());
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid number, try again.");
-            }
-        }
+        // Initialize logger first
+        logger = new Logger(caseId);
 
-        players = new ArrayList<>();
+        int numPlayers = askForPlayerCount();
+        players = registerPlayers(numPlayers);
+
+        logger.logEvent("System", "Start Game", "", 0, "", "N/A", 0);
+
+        loadQuestions();
+        System.out.println("Game setup complete! Let's start.\n");
+    }
+
+    private int askForPlayerCount() {
+        while (true) {
+            try {
+                System.out.print("Enter number of players (1-4): ");
+                int n = Integer.parseInt(input.nextLine());
+                if (n > 0 && n <= 4) {
+                    logger.logEvent("System", "Select Player Count", "", 0, "", "Success", 0);
+                    return n;
+                }
+            } catch (Exception ignored) {}
+            System.out.println("Invalid number, try again.");
+        }
+    }
+
+    private List<Player> registerPlayers(int numPlayers) {
+        List<Player> list = new ArrayList<>();
         for (int i = 1; i <= numPlayers; i++) {
             System.out.print("Enter name for Player " + i + ": ");
             String name = input.nextLine();
-            players.add(new Player(name));
+            list.add(new Player(name));
+            logger.logEvent("System", "Enter Player Name", "", 0, "", "Success", 0);
         }
+        return list;
+    }
 
-        logger = new Logger(caseId);
-        logger.logEvent("System", "Start Game", "", 0, "", "N/A", 0);
-
+    private void loadQuestions() {
         try {
             CSVParser parser = new CSVParser();
             questions = parser.parseQuestions("sample_game_CSV.csv");
-            logger.logEvent("System", "Load File", "", 0, "",  "Success", 0);
+            logger.logEvent("System", "Load File", "", 0, "", "Success", 0);
+            logger.logEvent("System", "File Loaded Successfully", "", 0, "", "Success", 0);
         } catch (IOException e) {
             System.out.println("Error reading CSV file: " + e.getMessage());
             System.exit(1);
         }
-
-        System.out.println("Game setup complete! Let's start.\n");
     }
 
     @Override
     protected void playTurn() {
         for (Player player : players) {
+            if (isGameOver()) return;
+
             System.out.println("\n" + player.getId() + ", it's your turn!");
 
-            Set<String> categories = new LinkedHashSet<>();
-            for (Question q : questions) if (!q.isAnswered()) categories.add(q.getCategory());
+            List<String> categories = getAvailableCategories();
             if (categories.isEmpty()) return;
 
-            List<String> catList = new ArrayList<>(categories);
-            System.out.println("Available categories:");
-            for (int i = 0; i < catList.size(); i++) System.out.println((i + 1) + ". " + catList.get(i));
+            List<List<Question>> grid = buildCategoryGrid(categories);
+            printGrid(categories, grid);
 
-            int catChoice = getUserChoice(catList.size(), "Pick a category number: ");
-            String chosenCategory = catList.get(catChoice - 1);
-            logger.logEvent(player.getId(), "Select Category", chosenCategory, 0, "", "", player.getScore());
+            String chosenCategory = chooseCategory(player, categories);
+            Question chosenQuestion = chooseQuestion(player, chosenCategory);
 
-        
-            List<Question> available = new ArrayList<>();
-            for (Question q : questions) if (!q.isAnswered() && q.getCategory().equals(chosenCategory)) available.add(q);
-
-            System.out.println("Available questions:");
-            for (int i = 0; i < available.size(); i++) System.out.println((i + 1) + ". " + available.get(i).getValue() + " pts");
-
-            int qChoice = getUserChoice(available.size(), "Pick a question number: ");
-            Question q = available.get(qChoice - 1);
-            logger.logEvent(player.getId(), "Select Question", chosenCategory, q.getValue(), "", "", player.getScore());
-
-
-            System.out.println("\nQuestion: " + q.getQuestionText());
-            System.out.println("\nA: " + q.getOptionA());
-            System.out.println("\nB: " + q.getOptionB());
-            System.out.println("\nC: " + q.getOptionC());
-            System.out.println("\nD: " + q.getOptionD());
-            
-            
-            System.out.print("Your answer: ");
-            String answer = input.nextLine();
-            boolean correct = answer.equalsIgnoreCase(q.getCorrectAnswer());
-            int points = correct ? q.getValue() : -q.getValue();
-            player.updateScore(points);
-            q.setAnswered(true);
-
-            String result = correct ? "Correct" : "Wrong";
-            System.out.println(result + "! You now have " + player.getScore() + " points.");
-
-            logger.logEvent(player.getId(), "Answer Question", q.getCategory(), q.getValue(), answer, result, player.getScore());
-            
-            // Record turn for report
-            turnRecords.add(new TurnRecord(
-                player.getId(),       
-                q.getCategory(),      
-                q.getValue(),         
-                q.getQuestionText(),  
-                answer,               
-                result,               
-                points,               
-                player.getScore()     
-            ));
-
+            processAnswer(player, chosenQuestion);
         }
     }
 
-    @Override
-    protected boolean isGameOver() {
-        return questions.stream().allMatch(Question::isAnswered);
+    private List<String> getAvailableCategories() {
+        Set<String> set = new LinkedHashSet<>();
+        for (Question q : questions) {
+            if (!q.isAnswered()) set.add(q.getCategory());
+        }
+        return new ArrayList<>(set);
+    }
+
+    private List<List<Question>> buildCategoryGrid(List<String> categories) {
+        List<List<Question>> grid = new ArrayList<>();
+        for (String cat : categories) {
+            List<Question> list = new ArrayList<>();
+            for (Question q : questions) {
+                if (q.getCategory().equals(cat)) list.add(q);
+            }
+            grid.add(list);
+        }
+        return grid;
+    }
+
+    private void printGrid(List<String> categories, List<List<Question>> grid) {
+        int maxRows = grid.stream().mapToInt(List::size).max().orElse(0);
+
+        System.out.println("\n================ QUESTION BOARD ================");
+        System.out.print("|");
+        for (String cat : categories)
+            System.out.printf(" %-15s |", cat);
+        System.out.println();
+
+        System.out.println("-".repeat(categories.size() * 19));
+
+        for (int r = 0; r < maxRows; r++) {
+            System.out.print("|");
+            for (int c = 0; c < categories.size(); c++) {
+                List<Question> col = grid.get(c);
+                String text = (r < col.size() && !col.get(r).isAnswered())
+                        ? col.get(r).getValue() + " pts"
+                        : " ";
+                System.out.printf(" %-15s |", text);
+            }
+            System.out.println();
+        }
+        System.out.println("================================================\n");
+    }
+
+    private String chooseCategory(Player player, List<String> categories) {
+        for (int i = 0; i < categories.size(); i++)
+            System.out.println((i + 1) + ". " + categories.get(i));
+
+        int choice = getUserChoice(categories.size(), "Pick a category number: ");
+        String selected = categories.get(choice - 1);
+
+        logger.logEvent(player.getId(), "Select Category", selected, 0, "", "", player.getScore());
+        return selected;
+    }
+
+    private Question chooseQuestion(Player player, String category) {
+        List<Question> list = new ArrayList<>();
+        for (Question q : questions) {
+            if (!q.isAnswered() && q.getCategory().equals(category)) list.add(q);
+        }
+
+        System.out.println("Available questions:");
+        for (int i = 0; i < list.size(); i++)
+            System.out.println((i + 1) + ". " + list.get(i).getValue() + " pts");
+
+        int choice = getUserChoice(list.size(), "Pick a question number: ");
+        Question q = list.get(choice - 1);
+
+        logger.logEvent(player.getId(), "Select Question", category, q.getValue(), "", "", player.getScore());
+        return q;
+    }
+
+    private void processAnswer(Player player, Question q) {
+        System.out.println("\nQuestion: " + q.getQuestionText());
+        System.out.println("A: " + q.getOptionA());
+        System.out.println("B: " + q.getOptionB());
+        System.out.println("C: " + q.getOptionC());
+        System.out.println("D: " + q.getOptionD());
+
+        System.out.print("Your answer: ");
+        String answer = input.nextLine();
+
+        boolean correct = answer.equalsIgnoreCase(q.getCorrectAnswer());
+        int points = correct ? q.getValue() : -q.getValue();
+        String result = correct ? "Correct" : "Wrong";
+
+        player.updateScore(points);
+        q.setAnswered(true);
+
+        logger.logEvent(player.getId(), "Answer Question",
+                q.getCategory(), q.getValue(), answer, result, player.getScore());
+        logger.logEvent("System", "Score Updated", "", 0, "", "Success", player.getScore());
+
+        System.out.println(result + "! You now have " + player.getScore() + " points.");
+
+        turnRecords.add(new TurnRecord(
+                player.getId(), q.getCategory(), q.getValue(),
+                q.getQuestionText(), answer, result, points, player.getScore()
+        ));
     }
 
     @Override
     protected void endGame() {
         System.out.println("\nGame Over!");
-        logger.logEvent("System", "Game End", "", 0, "", "N/A", 0);
+        logger.logEvent("System", "Exit Game", "", 0, "", "N/A", 0);
 
         System.out.println("Final Scores:");
-        for (Player p : players) System.out.println(p.getId() + ": " + p.getScore() + " points");
+        for (Player p : players)
+            System.out.println(p.getId() + ": " + p.getScore() + " points");
 
-   
+        logger.logEvent("System", "Generate Event Log", "", 0, "", "Success", 0);
+        logger.writeToCSV();
+
         GameReportGenerator report = new GameReportGenerator(caseId, players, turnRecords);
         report.generate();
+        logger.logEvent("System", "Generate Report", "", 0, "", "Success", 0);
 
-        System.out.println("Summary saved to summary.txt");
+        logger.logEvent("System", "Exit Game", "", 0, "", "N/A", 0);
     }
 
     private int getUserChoice(int max, String prompt) {
@@ -234,10 +213,15 @@ public class JeopardyGame extends GameTemplate {
             try {
                 System.out.print(prompt);
                 choice = Integer.parseInt(input.nextLine());
-            } catch (Exception e) {
+            } catch (Exception ignored) {
                 System.out.println("Invalid input. Try again.");
             }
         }
         return choice;
+    }
+
+    @Override
+    protected boolean isGameOver() {
+        return questions.stream().allMatch(Question::isAnswered);
     }
 }

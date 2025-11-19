@@ -1,0 +1,111 @@
+Case_ID,Player_ID,Activity,Timestamp,Category,Question_Value,Answer_Given,Result,Score_After_Play
+GAME001,System,Select Player Count,2025-11-19T19:06:11.095442200,,0,,Success,0
+GAME001,System,Enter Player Name,2025-11-19T19:06:13.822787100,,0,,Success,0
+GAME001,System,Enter Player Name,2025-11-19T19:06:15.147789700,,0,,Success,0
+GAME001,System,Start Game,2025-11-19T19:06:15.149597,,0,,N/A,0
+GAME001,System,Load File,2025-11-19T19:06:15.158266600,,0,,Success,0
+GAME001,System,File Loaded Successfully,2025-11-19T19:06:15.159253400,,0,,Success,0
+GAME001,kelly,Select Category,2025-11-19T19:06:16.214514800,Variables & Data Types,0,,,0
+GAME001,kelly,Select Question,2025-11-19T19:06:16.710871,Variables & Data Types,100,,,0
+GAME001,kelly,Answer Question,2025-11-19T19:06:17.443880400,Variables & Data Types,100,f,Wrong,-100
+GAME001,System,Score Updated,2025-11-19T19:06:17.446299600,,0,,Success,-100
+GAME001,ana,Select Category,2025-11-19T19:06:17.914990500,Variables & Data Types,0,,,0
+GAME001,ana,Select Question,2025-11-19T19:06:18.390356500,Variables & Data Types,200,,,0
+GAME001,ana,Answer Question,2025-11-19T19:06:18.943997800,Variables & Data Types,200,f,Wrong,-200
+GAME001,System,Score Updated,2025-11-19T19:06:18.945392600,,0,,Success,-200
+GAME001,kelly,Select Category,2025-11-19T19:06:19.527992300,Variables & Data Types,0,,,-100
+GAME001,kelly,Select Question,2025-11-19T19:06:20.036586500,Variables & Data Types,300,,,-100
+GAME001,kelly,Answer Question,2025-11-19T19:06:20.924018600,Variables & Data Types,300,f,Wrong,-400
+GAME001,System,Score Updated,2025-11-19T19:06:20.925343600,,0,,Success,-400
+GAME001,ana,Select Category,2025-11-19T19:06:21.488640,Variables & Data Types,0,,,-200
+GAME001,ana,Select Question,2025-11-19T19:06:22.128383400,Variables & Data Types,400,,,-200
+GAME001,ana,Answer Question,2025-11-19T19:06:22.878556200,Variables & Data Types,400,f,Wrong,-600
+GAME001,System,Score Updated,2025-11-19T19:06:22.879732500,,0,,Success,-600
+GAME001,kelly,Select Category,2025-11-19T19:06:23.425242,Variables & Data Types,0,,,-400
+GAME001,kelly,Select Question,2025-11-19T19:06:24.025276400,Variables & Data Types,500,,,-400
+GAME001,kelly,Answer Question,2025-11-19T19:06:24.812941,Variables & Data Types,500,g,Wrong,-900
+GAME001,System,Score Updated,2025-11-19T19:06:24.814936500,,0,,Success,-900
+GAME001,ana,Select Category,2025-11-19T19:06:25.384629,Control Structures,0,,,-600
+GAME001,ana,Select Question,2025-11-19T19:06:26.385420300,Control Structures,100,,,-600
+GAME001,ana,Answer Question,2025-11-19T19:06:27.072087400,Control Structures,100,g,Wrong,-700
+GAME001,System,Score Updated,2025-11-19T19:06:27.073109100,,0,,Success,-700
+GAME001,kelly,Select Category,2025-11-19T19:06:27.721751500,Control Structures,0,,,-900
+GAME001,kelly,Select Question,2025-11-19T19:06:28.284627400,Control Structures,200,,,-900
+GAME001,kelly,Answer Question,2025-11-19T19:06:28.900141300,Control Structures,200,g,Wrong,-1100
+GAME001,System,Score Updated,2025-11-19T19:06:28.902155400,,0,,Success,-1100
+GAME001,ana,Select Category,2025-11-19T19:06:30.016083600,Control Structures,0,,,-700
+GAME001,ana,Select Question,2025-11-19T19:06:30.539006500,Control Structures,300,,,-700
+GAME001,ana,Answer Question,2025-11-19T19:06:31.327893100,Control Structures,300,f,Wrong,-1000
+GAME001,System,Score Updated,2025-11-19T19:06:31.329030500,,0,,Success,-1000
+GAME001,kelly,Select Category,2025-11-19T19:06:31.901456800,Control Structures,0,,,-1100
+GAME001,kelly,Select Question,2025-11-19T19:06:32.404728200,Control Structures,400,,,-1100
+GAME001,kelly,Answer Question,2025-11-19T19:06:33.184098700,Control Structures,400,f,Wrong,-1500
+GAME001,System,Score Updated,2025-11-19T19:06:33.185666100,,0,,Success,-1500
+GAME001,ana,Select Category,2025-11-19T19:06:34.051952600,Control Structures,0,,,-1000
+GAME001,ana,Select Question,2025-11-19T19:06:34.758726600,Control Structures,500,,,-1000
+GAME001,ana,Answer Question,2025-11-19T19:06:35.668174300,Control Structures,500,f,Wrong,-1500
+GAME001,System,Score Updated,2025-11-19T19:06:35.669234600,,0,,Success,-1500
+GAME001,kelly,Select Category,2025-11-19T19:06:36.349388700,Functions,0,,,-1500
+GAME001,kelly,Select Question,2025-11-19T19:06:36.966555800,Functions,100,,,-1500
+GAME001,kelly,Answer Question,2025-11-19T19:06:37.757826700,Functions,100,f,Wrong,-1600
+GAME001,System,Score Updated,2025-11-19T19:06:37.758968500,,0,,Success,-1600
+GAME001,ana,Select Category,2025-11-19T19:06:38.321182800,Functions,0,,,-1500
+GAME001,ana,Select Question,2025-11-19T19:06:38.851027500,Functions,200,,,-1500
+GAME001,ana,Answer Question,2025-11-19T19:06:39.581328400,Functions,200,f,Wrong,-1700
+GAME001,System,Score Updated,2025-11-19T19:06:39.582746800,,0,,Success,-1700
+GAME001,kelly,Select Category,2025-11-19T19:06:40.132190500,Functions,0,,,-1600
+GAME001,kelly,Select Question,2025-11-19T19:06:40.791912300,Functions,300,,,-1600
+GAME001,kelly,Answer Question,2025-11-19T19:06:41.626176900,Functions,300,r,Wrong,-1900
+GAME001,System,Score Updated,2025-11-19T19:06:41.627690,,0,,Success,-1900
+GAME001,ana,Select Category,2025-11-19T19:06:42.194418,Functions,0,,,-1700
+GAME001,ana,Select Question,2025-11-19T19:06:42.736766900,Functions,400,,,-1700
+GAME001,ana,Answer Question,2025-11-19T19:06:43.455357900,Functions,400,e,Wrong,-2100
+GAME001,System,Score Updated,2025-11-19T19:06:43.456374300,,0,,Success,-2100
+GAME001,kelly,Select Category,2025-11-19T19:06:44.032596700,Functions,0,,,-1900
+GAME001,kelly,Select Question,2025-11-19T19:06:44.599952700,Functions,500,,,-1900
+GAME001,kelly,Answer Question,2025-11-19T19:06:45.432508200,Functions,500,e,Wrong,-2400
+GAME001,System,Score Updated,2025-11-19T19:06:45.433546500,,0,,Success,-2400
+GAME001,ana,Select Category,2025-11-19T19:06:46.060930800,Arrays,0,,,-2100
+GAME001,ana,Select Question,2025-11-19T19:06:46.820854200,Arrays,100,,,-2100
+GAME001,ana,Answer Question,2025-11-19T19:06:47.472413300,Arrays,100,e,Wrong,-2200
+GAME001,System,Score Updated,2025-11-19T19:06:47.473455700,,0,,Success,-2200
+GAME001,kelly,Select Category,2025-11-19T19:06:48.123363500,Arrays,0,,,-2400
+GAME001,kelly,Select Question,2025-11-19T19:06:48.819167700,Arrays,200,,,-2400
+GAME001,kelly,Answer Question,2025-11-19T19:06:49.509544500,Arrays,200,e,Wrong,-2600
+GAME001,System,Score Updated,2025-11-19T19:06:49.510728400,,0,,Success,-2600
+GAME001,ana,Select Category,2025-11-19T19:06:50.085788100,Arrays,0,,,-2200
+GAME001,ana,Select Question,2025-11-19T19:06:50.675887500,Arrays,300,,,-2200
+GAME001,ana,Answer Question,2025-11-19T19:06:51.350279400,Arrays,300,e,Wrong,-2500
+GAME001,System,Score Updated,2025-11-19T19:06:51.352265,,0,,Success,-2500
+GAME001,kelly,Select Category,2025-11-19T19:06:51.965326600,Arrays,0,,,-2600
+GAME001,kelly,Select Question,2025-11-19T19:06:52.577738100,Arrays,400,,,-2600
+GAME001,kelly,Answer Question,2025-11-19T19:06:53.282173400,Arrays,400,e,Wrong,-3000
+GAME001,System,Score Updated,2025-11-19T19:06:53.283212800,,0,,Success,-3000
+GAME001,ana,Select Category,2025-11-19T19:06:53.964575,Arrays,0,,,-2500
+GAME001,ana,Select Question,2025-11-19T19:06:54.673597900,Arrays,500,,,-2500
+GAME001,ana,Answer Question,2025-11-19T19:06:55.366721700,Arrays,500,e,Wrong,-3000
+GAME001,System,Score Updated,2025-11-19T19:06:55.368923,,0,,Success,-3000
+GAME001,kelly,Select Category,2025-11-19T19:06:55.973710500,File Handling,0,,,-3000
+GAME001,kelly,Select Question,2025-11-19T19:06:56.647091900,File Handling,100,,,-3000
+GAME001,kelly,Answer Question,2025-11-19T19:06:57.471389300,File Handling,100,e,Wrong,-3100
+GAME001,System,Score Updated,2025-11-19T19:06:57.472374400,,0,,Success,-3100
+GAME001,ana,Select Category,2025-11-19T19:06:58.172961300,File Handling,0,,,-3000
+GAME001,ana,Select Question,2025-11-19T19:06:58.745686600,File Handling,200,,,-3000
+GAME001,ana,Answer Question,2025-11-19T19:06:59.376619500,File Handling,200,e,Wrong,-3200
+GAME001,System,Score Updated,2025-11-19T19:06:59.377659600,,0,,Success,-3200
+GAME001,kelly,Select Category,2025-11-19T19:07:00.070453900,File Handling,0,,,-3100
+GAME001,kelly,Select Question,2025-11-19T19:07:00.679164,File Handling,300,,,-3100
+GAME001,kelly,Answer Question,2025-11-19T19:07:01.816727600,File Handling,300,e,Wrong,-3400
+GAME001,System,Score Updated,2025-11-19T19:07:01.818742700,,0,,Success,-3400
+GAME001,ana,Select Category,2025-11-19T19:07:02.563721900,File Handling,0,,,-3200
+GAME001,ana,Select Question,2025-11-19T19:07:03.186477100,File Handling,400,,,-3200
+GAME001,ana,Answer Question,2025-11-19T19:07:04.092234900,File Handling,400,w,Wrong,-3600
+GAME001,System,Score Updated,2025-11-19T19:07:04.093656500,,0,,Success,-3600
+GAME001,kelly,Select Category,2025-11-19T19:07:04.797996300,File Handling,0,,,-3400
+GAME001,kelly,Select Question,2025-11-19T19:07:05.451555500,File Handling,500,,,-3400
+GAME001,kelly,Answer Question,2025-11-19T19:07:06.150794800,File Handling,500,w,Wrong,-3900
+GAME001,System,Score Updated,2025-11-19T19:07:06.152979,,0,,Success,-3900
+GAME001,System,Exit Game,2025-11-19T19:07:06.153983500,,0,,N/A,0
+GAME001,System,Generate Event Log,2025-11-19T19:07:06.155287300,,0,,Success,0
+GAME001,System,Generate Report,2025-11-19T19:07:06.165278700,,0,,Success,0
+GAME001,System,Exit Game,2025-11-19T19:07:06.168300600,,0,,N/A,0

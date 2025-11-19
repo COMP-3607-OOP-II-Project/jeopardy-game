@@ -1,0 +1,136 @@
+JEOPARDY PROGRAMMING GAME REPORT
+================================
+Case ID: GAME001
+
+Players: kelly, ana
+
+Gameplay Summary: 
+-----------------
+Turn 1: kelly selected Variables & Data Types for 100 pts
+Question: Which of the following declares an integer variable in C++?
+Answer: f - Wrong (-100 pts)
+Score after turn: kelly = -100
+
+Turn 2: ana selected Variables & Data Types for 200 pts
+Question: Which data type is used to store a single character?
+Answer: f - Wrong (-200 pts)
+Score after turn: ana = -200
+
+Turn 3: kelly selected Variables & Data Types for 300 pts
+Question: What is the value of x after int x = 5/2;?
+Answer: f - Wrong (-300 pts)
+Score after turn: kelly = -400
+
+Turn 4: ana selected Variables & Data Types for 400 pts
+Question: Which of the following is a floating-point literal?
+Answer: f - Wrong (-400 pts)
+Score after turn: ana = -600
+
+Turn 5: kelly selected Variables & Data Types for 500 pts
+Question: Which operator is used to get the remainder?
+Answer: g - Wrong (-500 pts)
+Score after turn: kelly = -900
+
+Turn 6: ana selected Control Structures for 100 pts
+Question: Which statement is used to make a decision?
+Answer: g - Wrong (-100 pts)
+Score after turn: ana = -700
+
+Turn 7: kelly selected Control Structures for 200 pts
+Question: What is the output of: if (5 > 10) cout << 'Hi'; else cout << 'Bye';
+Answer: g - Wrong (-200 pts)
+Score after turn: kelly = -1100
+
+Turn 8: ana selected Control Structures for 300 pts
+Question: Which loop always executes at least once?
+Answer: f - Wrong (-300 pts)
+Score after turn: ana = -1000
+
+Turn 9: kelly selected Control Structures for 400 pts
+Question: Which keyword exits a loop immediately?
+Answer: f - Wrong (-400 pts)
+Score after turn: kelly = -1500
+
+Turn 10: ana selected Control Structures for 500 pts
+Question: How many times will the loop for(int i=0;i<3;i++) run?
+Answer: f - Wrong (-500 pts)
+Score after turn: ana = -1500
+
+Turn 11: kelly selected Functions for 100 pts
+Question: Which keyword is used to define a function returning no value?
+Answer: f - Wrong (-100 pts)
+Score after turn: kelly = -1600
+
+Turn 12: ana selected Functions for 200 pts
+Question: What is the purpose of a function parameter?
+Answer: f - Wrong (-200 pts)
+Score after turn: ana = -1700
+
+Turn 13: kelly selected Functions for 300 pts
+Question: "What is the return type of int add(int a
+Answer: r - Wrong (-300 pts)
+Score after turn: kelly = -1900
+
+Turn 14: ana selected Functions for 400 pts
+Question: Which statement exits a function and sends a value back?
+Answer: e - Wrong (-400 pts)
+Score after turn: ana = -2100
+
+Turn 15: kelly selected Functions for 500 pts
+Question: "If a function is not declared before use
+Answer: e - Wrong (-500 pts)
+Score after turn: kelly = -2400
+
+Turn 16: ana selected Arrays for 100 pts
+Question: Which declares an array of 5 integers?
+Answer: e - Wrong (-100 pts)
+Score after turn: ana = -2200
+
+Turn 17: kelly selected Arrays for 200 pts
+Question: What is the index of the first element in a C++ array?
+Answer: e - Wrong (-200 pts)
+Score after turn: kelly = -2600
+
+Turn 18: ana selected Arrays for 300 pts
+Question: Which loop is best for iterating a fixed-size array?
+Answer: e - Wrong (-300 pts)
+Score after turn: ana = -2500
+
+Turn 19: kelly selected Arrays for 400 pts
+Question: What happens if you access out-of-range index?
+Answer: e - Wrong (-400 pts)
+Score after turn: kelly = -3000
+
+Turn 20: ana selected Arrays for 500 pts
+Question: How many elements in int arr[3][4];?
+Answer: e - Wrong (-500 pts)
+Score after turn: ana = -3000
+
+Turn 21: kelly selected File Handling for 100 pts
+Question: Which header file is used for file I/O?
+Answer: e - Wrong (-100 pts)
+Score after turn: kelly = -3100
+
+Turn 22: ana selected File Handling for 200 pts
+Question: Which stream is used to write to a file?
+Answer: e - Wrong (-200 pts)
+Score after turn: ana = -3200
+
+Turn 23: kelly selected File Handling for 300 pts
+Question: Which method opens a file in append mode?
+Answer: e - Wrong (-300 pts)
+Score after turn: kelly = -3400
+
+Turn 24: ana selected File Handling for 400 pts
+Question: Which function closes a file?
+Answer: w - Wrong (-400 pts)
+Score after turn: ana = -3600
+
+Turn 25: kelly selected File Handling for 500 pts
+Question: What happens if a file fails to open?
+Answer: w - Wrong (-500 pts)
+Score after turn: kelly = -3900
+
+Final Scores:
+kelly: -3900
+ana: -3600
