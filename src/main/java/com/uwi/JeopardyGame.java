@@ -54,27 +54,68 @@ public class JeopardyGame extends GameTemplate {
         return list;
     }
 
-    private void loadQuestions() {
+     private List<Question> loadQuestionsFromFile(CommandLoader command) {
         try {
-            CSVParser parser = new CSVParser();
-            questions = parser.parseQuestions("sample_game_CSV.csv");
+            List<Question> loaded = command.execute();
             logger.logEvent("System", "Load File", "", 0, "", "Success", 0);
-            logger.logEvent("System", "File Loaded Successfully", "", 0, "", "Success", 0);
+            return loaded;
         } catch (IOException e) {
-            System.out.println("Error reading CSV file: " + e.getMessage());
+            System.out.println("Error loading file: " + e.getMessage());
             System.exit(1);
+            return List.of(); 
         }
     }
 
+    private void loadQuestions() {
+    Map<Integer, CommandLoader> commands = new HashMap<>();
+    commands.put(1, new CSVCommandLoader("sample_game_CSV.csv"));
+    commands.put(2, new XMLCommandLoader("sample_game_XML.xml"));
+    commands.put(3, new JSONCommandLoader("sample_game_JSON.json"));
+
+    CommandLoader command = null;
+
+    while (command == null) {
+        System.out.println("Select file type to load questions:");
+        System.out.println("1. CSV");
+        System.out.println("2. XML");
+        System.out.println("3. JSON");
+        System.out.print("Enter choice: ");
+
+        String inputLine = input.nextLine().trim();
+
+        try {
+            int choice = Integer.parseInt(inputLine);
+            command = commands.get(choice);
+            if (command == null) {
+                System.out.println("Invalid choice. Try again.\n");
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input. Enter a number.\n");
+        }
+    }
+
+    questions = loadQuestionsFromFile(command);
+    if (questions.isEmpty()) {
+        System.out.println("No questions found! Exiting.");
+        System.exit(1);
+    }
+    for (Question q : questions) {
+        q.setAnswered(false);
+    }
+    System.out.println("Questions loaded successfully!");
+}
+
+
     @Override
     protected void playTurn() {
+        while(!isGameOver()) {
         for (Player player : players) {
-            if (isGameOver()) return;
+            if (isGameOver()) break;
 
             System.out.println("\n" + player.getId() + ", it's your turn!");
 
             List<String> categories = getAvailableCategories();
-            if (categories.isEmpty()) return;
+            if (categories.isEmpty()) break;
 
             List<List<Question>> grid = buildCategoryGrid(categories);
             printGrid(categories, grid);
@@ -85,6 +126,7 @@ public class JeopardyGame extends GameTemplate {
             processAnswer(player, chosenQuestion);
         }
     }
+} 
 
     private List<String> getAvailableCategories() {
         Set<String> set = new LinkedHashSet<>();
@@ -111,10 +153,11 @@ public class JeopardyGame extends GameTemplate {
 
         System.out.println("\n================ QUESTION BOARD ================");
         System.out.print("|");
-        for (String cat : categories)
+        for (String cat : categories) {
             System.out.printf(" %-15s |", cat);
+        }
         System.out.println();
-
+        
         System.out.println("-".repeat(categories.size() * 19));
 
         for (int r = 0; r < maxRows; r++) {
@@ -222,6 +265,6 @@ public class JeopardyGame extends GameTemplate {
 
     @Override
     protected boolean isGameOver() {
-        return questions.stream().allMatch(Question::isAnswered);
+        return questions.isEmpty() || questions.stream().allMatch(Question::isAnswered);
     }
 }

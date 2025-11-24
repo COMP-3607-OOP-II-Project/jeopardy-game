@@ -1,0 +1,5 @@
+Case_ID,Player_ID,Activity,Timestamp,Category,Question_Value,Answer_Given,Result,Score_After_Play
+GAME001,System,Select Player Count,2025-11-23T20:17:45.398265400,,0,,Success,0
+GAME001,System,Enter Player Name,2025-11-23T20:17:47.152081500,,0,,Success,0
+GAME001,System,Start Game,2025-11-23T20:17:47.152081500,,0,,N/A,0
+GAME001,System,Load File,2025-11-23T20:17:49.036191100,,0,,Success,0

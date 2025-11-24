@@ -1,0 +1,28 @@
+Time,Player,Action,Category,Value,Answer,Result,Score
+2025-11-15T21:18:32.528020700,System,Game Start,,0,,,0
+2025-11-15T21:18:46.041813600,jude,Answered,Variables & Data Types,100,int,Wrong,-100
+2025-11-15T21:18:51.401871800,anya,Answered,Variables & Data Types,300,2,Correct,300
+2025-11-15T21:19:01.600908,jude,Answered,Variables & Data Types,500,%,Wrong,-600
+2025-11-15T21:19:10.017969700,anya,Answered,Variables & Data Types,200,char,Wrong,100
+2025-11-15T21:19:24.333222200,jude,Answered,Control Structures,100,idk,Wrong,-700
+2025-11-15T21:19:33.731660600,anya,Answered,Functions,300,int,Wrong,-200
+2025-11-15T21:19:43.530342800,jude,Answered,Functions,500,idk,Wrong,-1200
+2025-11-15T21:19:57.652989400,anya,Answered,Variables & Data Types,400,0,Wrong,-600
+2025-11-15T21:22:19.037302600,jude,Answered,Control Structures,200,Bye,Wrong,-1400
+2025-11-15T21:22:31.775523500,anya,Answered,Control Structures,500,3,Wrong,-1100
+2025-11-15T21:22:39.566559100,jude,Answered,Arrays,400,idk,Wrong,-1800
+2025-11-15T21:22:52.047252100,anya,Answered,Control Structures,400,lol,Wrong,-1500
+2025-11-15T21:23:03.179685300,jude,Answered,Functions,200,poo,Wrong,-2000
+2025-11-15T21:23:10.053575600,anya,Answered,Arrays,200,0,Wrong,-1700
+2025-11-15T21:23:20.174124100,jude,Answered,Arrays,500,8,Wrong,-2500
+2025-11-15T21:23:28.663074800,anya,Answered,File Handling,100,i/o,Wrong,-1800
+2025-11-15T21:23:35.011318300,jude,Answered,Arrays,100,7,Wrong,-2600
+2025-11-15T21:23:44.241925700,anya,Answered,Functions,400,return,Wrong,-2200
+2025-11-15T21:23:59.825617900,anya,Answered,File Handling,400,2,Wrong,-2600
+2025-11-15T21:24:14.795318,jude,Answered,Arrays,300,poo,Wrong,-2900
+2025-11-15T21:24:20.130657700,anya,Answered,Control Structures,300,for,Correct,-2300
+2025-11-15T21:24:30.970955100,jude,Answered,Functions,100,final,Wrong,-3000
+2025-11-15T21:24:36.622409400,anya,Answered,File Handling,300,idk,Wrong,-2600
+2025-11-15T21:24:42.616925900,jude,Answered,File Handling,200,poo,Wrong,-3200
+2025-11-15T21:24:48.778745700,anya,Answered,File Handling,500,delete,Wrong,-3100
+2025-11-15T21:24:48.779739600,System,Game End,,0,,,0
