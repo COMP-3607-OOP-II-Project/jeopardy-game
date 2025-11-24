@@ -20,16 +20,15 @@ public class JeopardyGame extends GameTemplate {
         // Initialize logger first
         logger = new Logger(caseId);
 
-        int numPlayers = askForPlayerCount();
-        players = registerPlayers(numPlayers);
+        PlayerManager pm = new PlayerManager(input, logger);
+        players = pm.registerPlayers();
 
-        logger.logEvent("System", "Start Game", "", 0, "", "N/A", 0);
-
-        loadQuestions();
+        QuestionLoader ql = new QuestionLoader(input, logger);
+        questions = ql.loadQuestions();
         System.out.println("Game setup complete! Let's start.\n");
     }
 
-    private int askForPlayerCount() {
+    /*private int askForPlayerCount() {
         while (true) {
             try {
                 System.out.print("Enter number of players (1-4): ");
@@ -41,9 +40,9 @@ public class JeopardyGame extends GameTemplate {
             } catch (Exception ignored) {}
             System.out.println("Invalid number, try again.");
         }
-    }
+    }*/
 
-    private List<Player> registerPlayers(int numPlayers) {
+    /*private List<Player> registerPlayers(int numPlayers) {
         List<Player> list = new ArrayList<>();
         for (int i = 1; i <= numPlayers; i++) {
             System.out.print("Enter name for Player " + i + ": ");
@@ -52,9 +51,9 @@ public class JeopardyGame extends GameTemplate {
             logger.logEvent("System", "Enter Player Name", "", 0, "", "Success", 0);
         }
         return list;
-    }
+    }*/
 
-     private List<Question> loadQuestionsFromFile(CommandLoader command) {
+      /*  private List<Question> loadQuestionsFromFile(CommandLoader command) {
         try {
             List<Question> loaded = command.execute();
             logger.logEvent("System", "Load File", "", 0, "", "Success", 0);
@@ -64,9 +63,9 @@ public class JeopardyGame extends GameTemplate {
             System.exit(1);
             return List.of(); 
         }
-    }
+    }*/
 
-    private void loadQuestions() {
+    /*private void loadQuestions() {
     Map<Integer, CommandLoader> commands = new HashMap<>();
     commands.put(1, new CSVCommandLoader("sample_game_CSV.csv"));
     commands.put(2, new XMLCommandLoader("sample_game_XML.xml"));
@@ -103,7 +102,7 @@ public class JeopardyGame extends GameTemplate {
         q.setAnswered(false);
     }
     System.out.println("Questions loaded successfully!");
-}
+}*/
 
 
     @Override
@@ -117,8 +116,8 @@ public class JeopardyGame extends GameTemplate {
             List<String> categories = getAvailableCategories();
             if (categories.isEmpty()) break;
 
-            List<List<Question>> grid = buildCategoryGrid(categories);
-            printGrid(categories, grid);
+            List<List<Question>> grid = GameBoard.buildGrid(questions, categories);
+            GameBoard.printGrid(categories, grid);
 
             String chosenCategory = chooseCategory(player, categories);
             Question chosenQuestion = chooseQuestion(player, chosenCategory);
@@ -136,7 +135,7 @@ public class JeopardyGame extends GameTemplate {
         return new ArrayList<>(set);
     }
 
-    private List<List<Question>> buildCategoryGrid(List<String> categories) {
+    /*private List<List<Question>> buildCategoryGrid(List<String> categories) {
         List<List<Question>> grid = new ArrayList<>();
         for (String cat : categories) {
             List<Question> list = new ArrayList<>();
@@ -146,9 +145,9 @@ public class JeopardyGame extends GameTemplate {
             grid.add(list);
         }
         return grid;
-    }
+    }*/
 
-    private void printGrid(List<String> categories, List<List<Question>> grid) {
+    /*private void printGrid(List<String> categories, List<List<Question>> grid) {
         int maxRows = grid.stream().mapToInt(List::size).max().orElse(0);
 
         System.out.println("\n================ QUESTION BOARD ================");
@@ -172,7 +171,7 @@ public class JeopardyGame extends GameTemplate {
             System.out.println();
         }
         System.out.println("================================================\n");
-    }
+    }*/
 
     private String chooseCategory(Player player, List<String> categories) {
         for (int i = 0; i < categories.size(); i++)
