@@ -8,13 +8,15 @@ public class JSONParser implements QuestionParser {
 
     @Override
     public List<Question> parseQuestions(String filePath) throws IOException {
+
         String jsonContent = readFile(filePath);
         JSONArray array = new JSONArray(jsonContent);
 
         return parseArray(array);
     }
 
-    private String readFile(String filePath) throws IOException {
+    /*private String readFile(String filePath) throws IOException {
+
         StringBuilder text = new StringBuilder();
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
         String line;
@@ -25,9 +27,23 @@ public class JSONParser implements QuestionParser {
 
         reader.close();
         return text.toString();
-    }
+    }*/
+
+    private String readFile(String filePath) throws FileNotFoundException {
+
+         Scanner scan = new Scanner(new File(filePath));
+         scan.useDelimiter("\\Z"); 
+         String content = "";
+         if (scan.hasNext()) {
+            content = scan.next();
+         } 
+        scan.close();
+        return content;
+   }
+
 
     private List<Question> parseArray(JSONArray array) {
+
         List<Question> questions = new ArrayList<>();
 
         for (int i = 0; i < array.length(); i=i+1) {
@@ -39,6 +55,7 @@ public class JSONParser implements QuestionParser {
     }
 
     private Question parseQuestion(JSONObject obj) {
+
         String category = obj.getString("Category");
         int value = obj.getInt("Value");
         String questionText = obj.getString("Question");
@@ -52,10 +69,7 @@ public class JSONParser implements QuestionParser {
 
         String correctAnswer = obj.getString("CorrectAnswer");
 
-        return new Question(
-            category, value, questionText,
-            optionA, optionB, optionC, optionD,
-            correctAnswer
+        return new Question(category, value, questionText, optionA, optionB, optionC, optionD, correctAnswer
         );
     }
 }
