@@ -7,51 +7,74 @@ public class CSVParser implements QuestionParser {
 
     @Override
     public List<Question> parseQuestions(String filePath) throws IOException {
+
         List<String> lines = readLines(filePath);
-        return parseQuestionsFromLines(lines);
+        return parseLines(lines);
     }
 
-    private List<String> readLines(String filePath) throws IOException {
+    /*public List<String> readLines(String filePath) throws IOException {
+
         List<String> lines = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            br.readLine(); 
-            String line;
-            while ((line = br.readLine()) != null) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            reader.readLine(); 
+            while ((line = reader.readLine()) != null) {
                 lines.add(line);
             }
         }
         return lines;
-    }
+    }*/
 
-    private List<Question> parseQuestionsFromLines(List<String> lines) {
-        List<Question> questions = new ArrayList<>();
-        for (String line : lines) {
-            String[] parts = line.split(",");
-            if (isValidLine(parts, line)) {
-            questions.add(parseQuestion(parts));
+    public List<String> readLines(String filePath) throws FileNotFoundException {
+
+        List<String> lines = new ArrayList<>();
+        try (Scanner scan = new Scanner(new File(filePath))) {
+
+        if (scan.hasNextLine()) {
+            scan.nextLine(); 
         }
-    }
-        return questions;
+        while (scan.hasNextLine()) {
+               lines.add(scan.nextLine());
+        }
+    } 
+    return lines;
     }
 
-    private boolean isValidLine(String[] parts, String line) {
+    public List<Question> parseLines(List<String> lines) {
+
+        List<Question> questions = new ArrayList<>();
+
+        for (String line : lines) {
+             String[] parts = line.split(",");
+
+             if (parts.length >=8) {
+                 questions.add(parseQuestion(parts));
+            }
+            else {
+                System.out.println("Invalid line (8 fields is expected): " + line);
+            }
+       } 
+    return questions;
+    }
+
+    /*public boolean isValidLine(String[] parts, String line) {
         if (parts.length < 8) {
             System.out.println("Invalid line (expected 8 fields): " + line);
             return false;
         }
         return true;
-    }
+    }*/
 
-    private Question parseQuestion(String[] parts) {
+    public Question parseQuestion(String[] parts) {
+
         String category = parts[0].trim();
         int value = Integer.parseInt(parts[1].trim());
-        String questionText = parts[2].trim();
+        String question = parts[2].trim();
         String optionA = parts[3].trim();
         String optionB = parts[4].trim();
-        String optionC = parts[5].trim();
+        String optionC = parts[5].trim(); 
         String optionD = parts[6].trim();
         String correctAnswer = parts[7].trim().toUpperCase();
 
-        return new Question(category, value, questionText, optionA, optionB, optionC, optionD, correctAnswer);
+        return new Question(category, value, question, optionA, optionB, optionC, optionD, correctAnswer);
     }
 }
