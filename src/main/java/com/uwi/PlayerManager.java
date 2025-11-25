@@ -1,6 +1,8 @@
 package com.uwi;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class PlayerManager {
 
@@ -13,28 +15,39 @@ public class PlayerManager {
     }
 
     public List<Player> registerPlayers() {
-        int numPlayers = askForPlayerCount();
+        int totalPlayers = askForPlayerCount();
         List<Player> players = new ArrayList<>();
 
-        for (int i = 1; i <= numPlayers; i++) {
+        for (int i = 1; i <= totalPlayers; i++) {
             System.out.print("Enter name for Player " + i + ": ");
-            String name = input.nextLine();
+            String name = input.nextLine().trim();
+
             players.add(new Player(name));
+
+            
             logger.logEvent("System", "Enter Player Name", "", 0, "", "Success", 0);
         }
+
         return players;
     }
 
     private int askForPlayerCount() {
-        int n = -1;
-        while (n < 1 || n > 4) {
+        int count = -1;
+
+        while (count < 1 || count > 4) {
+            System.out.print("How many players? (1-4): ");
             try {
-                System.out.print("Enter number of players (1-4): ");
-                n = Integer.parseInt(input.nextLine().trim());
-            } catch (Exception ignored) {}
-            if (n < 1 || n > 4) System.out.println("Invalid number, try again.");
+                count = Integer.parseInt(input.nextLine().trim());
+            } catch (NumberFormatException e) {
+                // ignore, just retry
+            }
+
+            if (count < 1 || count > 4) {
+                System.out.println("Oops! That's not valid. Try again.");
+            }
         }
+
         logger.logEvent("System", "Select Player Count", "", 0, "", "Success", 0);
-        return n;
+        return count;
     }
 }
