@@ -4,7 +4,7 @@ package com.uwi;
 public class Question {
     private String category;
     private int value;
-    private String questionText;
+    private String question;
     private String optionA;
     private String optionB;
     private String optionC;
@@ -12,10 +12,11 @@ public class Question {
     private String correctAnswer;
     private boolean answered;
 
-    public Question(String category, int value, String questionText, String optionA, String optionB, String optionC, String optionD, String correctAnswer) {
+    public Question(String category, int value, String question, String optionA, String optionB, String optionC, String optionD, String correctAnswer) {
+
         this.category = category;
         this.value = value;
-        this.questionText = questionText;
+        this.question = question;
         this.optionA = optionA;
         this.optionB = optionB;
         this.optionC = optionC;
@@ -33,7 +34,7 @@ public class Question {
     }
 
     public String getQuestionText() {
-        return questionText;
+        return question;
     }
 
     public String getOptionA() {
@@ -75,7 +76,7 @@ public class Question {
     public String toString() {
         return "Category: " + category + "\n" +
                "Value: " + value + "\n" +
-               "Question: " + questionText + "\n" +
+               "Question: " + question + "\n" +
                "A: " + optionA + "\n" +
                "B: " + optionB + "\n" +
                "C: " + optionC + "\n" +
