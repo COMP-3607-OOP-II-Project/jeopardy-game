@@ -10,10 +10,10 @@ public class JeopardyGame extends GameTemplate {
 
     private final Scanner input = new Scanner(System.in);
     private List<Question> questions = new ArrayList<>();
-    private final List<TurnRecord> turnRecords = new ArrayList<>();
+    private List<Player> players = new ArrayList<>();
     private Logger logger;
     private final String caseId = "GAME001";
-    private GameEventNotifier notifier = new GameEventNotifier();
+    private final GameEventNotifier notifier = new GameEventNotifier();
 
     public JeopardyGame() {}
 
@@ -26,13 +26,26 @@ public class JeopardyGame extends GameTemplate {
     protected void setup() {
         System.out.println("Welcome to Jeopardy!");
         logger = new Logger(caseId);
+        GameReportGenerator report = new GameReportGenerator(caseId);
+
+        notifier.attach(logger);
+        notifier.attach(report);
 
        
         PlayerManager pm = new PlayerManager(input, logger);
         players = pm.registerPlayers();
 
+        notifier.notifyObservers(new Event(caseId, "System", "Select Player Count",
+                java.time.LocalDateTime.now().toString(), "", 0, "", "Success", 0, "", 0));
+
         QuestionLoader loader = new QuestionLoader(input, logger);
         questions = loader.loadQuestions();
+
+        notifier.notifyObservers(new Event(caseId, "System", "Load File",
+                java.time.LocalDateTime.now().toString(), "", 0, "", "Success", 0, "", 0));
+        
+                notifier.notifyObservers(new Event(caseId, "System", "File Loaded Successfully",
+                java.time.LocalDateTime.now().toString(), "", 0, "", "Success", 0, "", 0));
 
         for (Question q : questions) {
               q.setAnswered(false);
@@ -97,7 +110,10 @@ public class JeopardyGame extends GameTemplate {
     int pos = Integer.parseInt(entry);
     String chosen = categories.get(pos - 1);
 
-    logger.logEvent(player.getId(), "Select Category", chosen, 0, "", "", player.getScore());
+    notifier.notifyObservers(new Event(caseId, player.getId(), "Select Category",
+                java.time.LocalDateTime.now().toString(), chosen, 0, "", "Success", player.getScore(), "", 0));
+
+
     return chosen;
 }
 
@@ -127,7 +143,9 @@ private Question askQuestion(Player player, String category) {
     int idx = Integer.parseInt(entry);
     Question chosen = list.get(idx - 1);
 
-    logger.logEvent(player.getId(), "Select Question", category, chosen.getValue(), "", "", player.getScore());
+    notifier.notifyObservers(new Event(caseId, player.getId(), "Select Question",
+                java.time.LocalDateTime.now().toString(), category, chosen.getValue(), "", "Success", player.getScore(), "", 0));
+
     return chosen;
 }
 
@@ -153,17 +171,9 @@ private Question askQuestion(Player player, String category) {
         result = "Wrong"; 
         }
 
-        Event e = new Event(
-        caseId,
-        player.getId(),
-        "Answer Question",
-        java.time.LocalDateTime.now().toString(), 
-        q.getCategory(),
-        q.getValue(),    
-        answer,
-        result,
-        player.getScore()
-        ); 
+        Event e = new Event(caseId, player.getId(), "Answer Question",
+                java.time.LocalDateTime.now().toString(), q.getCategory(), q.getValue(),
+                answer, result, player.getScore(), q.getQuestionText(), change);
 
      notifier.notifyObservers(e);
 
@@ -175,11 +185,11 @@ private Question askQuestion(Player player, String category) {
                 result,
                 player.getScore());
 
-        logger.logEvent("System", "Score Updated", "", 0, "", "Success", player.getScore());
+        notifier.notifyObservers(new Event(caseId, "System", "Score Updated",
+                java.time.LocalDateTime.now().toString(), "", 0, "", "Success", player.getScore(), "", 0));
 
         System.out.println(result + "! Your score is now " + player.getScore());
 
-        recordTurn(player, q, answer, result, change);
     }
 
     private void displayQuestion(Question q) {
@@ -204,18 +214,6 @@ private Question askQuestion(Player player, String category) {
         player.updateScore(change);
     }
 
-    private void recordTurn(Player p, Question q, String answer, String result, int pts) {
-        turnRecords.add(new TurnRecord(
-                p.getId(),
-                q.getCategory(),
-                q.getValue(),
-                q.getQuestionText(),
-                answer,
-                result,
-                pts,
-                p.getScore()
-        ));
-    }
 
     private int askNumber(String prompt, int min, int max) {
         int num = -1;
@@ -234,20 +232,28 @@ private Question askQuestion(Player player, String category) {
     protected void endGame() {
         System.out.println("\nGame Over!");
 
-        logger.logEvent("System", "Exit Game", "", 0, "", "N/A", 0);
-
         System.out.println("Final Scores:");
         for (Player p : players) {
             System.out.println(p.getId() + ": " + p.getScore());
         }
 
-        logger.logEvent("System", "Generate Event Log", "", 0, "", "Success", 0);
+        for (GameObserver observer : notifier.getObservers()) {
+            if (observer instanceof GameReportGenerator) {
+                GameReportGenerator report = (GameReportGenerator) observer;
+                report.generate();
+            }
+        }
+
+        notifier.notifyObservers(new Event(caseId, "System", "Generate Event Log",
+                java.time.LocalDateTime.now().toString(), "", 0, "", "Success", 0, "", 0));
+
+        notifier.notifyObservers(new Event(caseId, "System", "Generate Report",
+                java.time.LocalDateTime.now().toString(), "", 0, "", "Success", 0, "", 0));
+
+        notifier.notifyObservers(new Event(caseId, "System", "Exit Game",
+                java.time.LocalDateTime.now().toString(), "", 0, "", "Success", 0, "", 0));
+
         logger.writeToCSV();
-
-        GameReportGenerator report = new GameReportGenerator(caseId, players, turnRecords);
-        report.generate();
-
-        logger.logEvent("System", "Generate Report", "", 0, "", "Success", 0);
     }
 
     @Override
