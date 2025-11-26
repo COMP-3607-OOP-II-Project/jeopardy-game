@@ -6,8 +6,20 @@ import static org.junit.Assert.*;
 public class EventTest {
 
     @Test
-    public void testEvent() {
-        Event e = new Event("GAME001", "jude", "Answer Question", "2025-11-26T12:00", "Variables and Data Types", 100, "A", "Correct", 100);
+    public void testEventInitialization() {
+        Event e = new Event(
+            "GAME001",
+            "jude",
+            "Answer Question",
+            "2025-11-26T12:00",
+            "Variables and Data Types",
+            100,
+            "A",
+            "Correct",
+            100,
+            "",  
+            0     
+        );
 
         assertEquals("GAME001", e.caseId);
         assertEquals("jude", e.playerId);
@@ -17,5 +29,8 @@ public class EventTest {
         assertEquals("A", e.answerGiven);
         assertEquals("Correct", e.result);
         assertEquals(100, e.scoreAfter);
+
+        assertEquals("", e.questionText);
+        assertEquals(0, e.pointsChange);
     }
 }
