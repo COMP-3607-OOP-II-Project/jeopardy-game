@@ -1,28 +1,53 @@
 package com.uwi;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import org.junit.Test;
-;
 
-/*public class QuestionTest {
+public class QuestionTest {
 
-     @Test
-    public void testMarkUsed() {
-        Question q = new Question("Math", 200, "2+2=?", "4");
-        assertFalse(q.isUsed());
+    @Test
+    public void testSetAnswered() {
+        Question q = new Question(
+                "Math", 200, "2+2=?",
+                "1", "2", "3", "4",
+                "D"
+        );
 
-        q.markUsed();
-        assertTrue(q.isUsed());
+        assertFalse(q.isAnswered());
+
+        q.setAnswered(true);
+        assertTrue(q.isAnswered());
     }
 
     @Test
     public void testQuestionFields() {
-        Question q = new Question("Science", 100, "Planet closest to the sun?", "Mercury");
+        Question q = new Question(
+                "Science", 100, "Planet closest to the sun?",
+                "Earth", "Venus", "Mercury", "Mars",
+                "C"
+        );
+
         assertEquals("Science", q.getCategory());
         assertEquals(100, q.getValue());
-        assertEquals("Mercury", q.getAnswer());
-    } 
-}*/ 
+        assertEquals("Planet closest to the sun?", q.getQuestionText());
+        assertEquals("Earth", q.getOptionA());
+        assertEquals("Venus", q.getOptionB());
+        assertEquals("Mercury", q.getOptionC());
+        assertEquals("Mars", q.getOptionD());
+        assertEquals("C", q.getCorrectAnswer());
+    }
 
+    @Test
+    public void testIsCorrect() {
+        Question q = new Question(
+                "General", 50, "Capital of France?",
+                "Berlin", "Madrid", "Paris", "Rome",
+                "C"
+        );
+
+        assertTrue(q.isCorrect("c"));      
+        assertTrue(q.isCorrect("C"));      
+        assertFalse(q.isCorrect("A"));    
+        assertFalse(q.isCorrect(null));
+    }
+}
