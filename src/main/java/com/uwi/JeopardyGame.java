@@ -26,6 +26,9 @@ public class JeopardyGame extends GameTemplate {
     protected void setup() {
         System.out.println("Welcome to Jeopardy!");
 
+        notifier.notifyObservers(new Event(caseId, "System", "Start Game",
+            java.time.LocalDateTime.now().toString(), "", 0, "", "Success", 0, "", 0));
+
         logger = new Logger(caseId);
 
         GameReportGenerator report = new GameReportGenerator(caseId);
