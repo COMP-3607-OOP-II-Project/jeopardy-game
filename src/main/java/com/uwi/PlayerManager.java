@@ -7,11 +7,13 @@ import java.util.Scanner;
 public class PlayerManager {
 
     private Scanner input;
-    private Logger logger;
+    private GameEventNotifier notifier;
+    private String caseId;
 
-    public PlayerManager(Scanner input, Logger logger) {
+    public PlayerManager(Scanner input, GameEventNotifier notifier, String caseId) {
         this.input = input;
-        this.logger = logger;
+        this.notifier = notifier;
+        this.caseId = caseId;
     }
 
     public List<Player> registerPlayers() {
@@ -24,8 +26,9 @@ public class PlayerManager {
 
             players.add(new Player(name));
 
-            
-            logger.logEvent("System", "Enter Player Name", "", 0, "", "Success", 0);
+            notifier.notifyObservers(new Event(caseId, "System", "Enter Player Name",
+                java.time.LocalDateTime.now().toString(), "", 0, "", "Success", 0, "", 0));
+           
         }
 
         return players;
@@ -47,7 +50,9 @@ public class PlayerManager {
             }
         }
 
-        logger.logEvent("System", "Select Player Count", "", 0, "", "Success", 0);
-        return count;
+        notifier.notifyObservers(new Event(caseId, "System", "Select Player Count",
+                java.time.LocalDateTime.now().toString(), "", 0, "", "Success", 0, "", 0));
+        
+                return count;
     }
 }

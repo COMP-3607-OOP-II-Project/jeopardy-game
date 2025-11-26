@@ -25,19 +25,15 @@ public class JeopardyGame extends GameTemplate {
     @Override
     protected void setup() {
         System.out.println("Welcome to Jeopardy!");
-        logger = new Logger(caseId);
-        GameReportGenerator report = new GameReportGenerator(caseId);
 
-        notifier.attach(logger);
+        GameReportGenerator report = new GameReportGenerator(caseId);
         notifier.attach(report);
 
        
-        PlayerManager pm = new PlayerManager(input, logger);
+        PlayerManager pm = new PlayerManager(input, notifier, caseId);
         players = pm.registerPlayers();
 
-        notifier.notifyObservers(new Event(caseId, "System", "Select Player Count",
-                java.time.LocalDateTime.now().toString(), "", 0, "", "Success", 0, "", 0));
-
+    
         QuestionLoader loader = new QuestionLoader(input, logger);
         questions = loader.loadQuestions();
 
