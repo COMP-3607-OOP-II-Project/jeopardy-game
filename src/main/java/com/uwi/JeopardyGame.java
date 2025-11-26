@@ -34,14 +34,13 @@ public class JeopardyGame extends GameTemplate {
         players = pm.registerPlayers();
 
     
-        QuestionLoader loader = new QuestionLoader(input, logger);
+        QuestionLoader loader = new QuestionLoader(input, notifier, caseId);
         questions = loader.loadQuestions();
 
-        notifier.notifyObservers(new Event(caseId, "System", "Load File",
-                java.time.LocalDateTime.now().toString(), "", 0, "", "Success", 0, "", 0));
         
-                notifier.notifyObservers(new Event(caseId, "System", "File Loaded Successfully",
-                java.time.LocalDateTime.now().toString(), "", 0, "", "Success", 0, "", 0));
+        
+        notifier.notifyObservers(new Event(caseId, "System", "File Loaded Successfully",
+            java.time.LocalDateTime.now().toString(), "", 0, "", "Success", 0, "", 0));
 
         for (Question q : questions) {
               q.setAnswered(false);

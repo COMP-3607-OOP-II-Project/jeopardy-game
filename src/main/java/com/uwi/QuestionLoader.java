@@ -8,11 +8,13 @@ import java.util.Scanner;
 public class QuestionLoader {
 
     private Scanner input;
-    private Logger logger;
+    private GameEventNotifier notifier;
+    private String caseId;
 
-    public QuestionLoader(Scanner input, Logger logger) {
+    public QuestionLoader(Scanner input, GameEventNotifier notifier, String caseId ) {
         this.input = input;
-        this.logger = logger;
+        this.notifier = notifier;
+        this.caseId = caseId;
     }
 
      public List<Question> loadQuestions() {
@@ -57,8 +59,10 @@ public class QuestionLoader {
                 q.setAnswered(false);
             }
 
-            logger.logEvent("System", "Load File", "", 0, "", "Success", 0);
-            System.out.println("Questions loaded successfully!");
+            notifier.notifyObservers(new Event(caseId, "System", "Load File",
+                java.time.LocalDateTime.now().toString(), "", 0, "", "Success", 0, "", 0));
+            
+                System.out.println("Questions loaded successfully!");
             return questions;
 
         } catch (IOException e) {
