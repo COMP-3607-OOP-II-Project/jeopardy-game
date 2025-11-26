@@ -23,4 +23,8 @@ public class GameEventNotifier implements GameSubject {
             o.update(event);
         }
     }
+
+    public List<GameObserver> getObservers() {
+        return observers;
+    }
 }
