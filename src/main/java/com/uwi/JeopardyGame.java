@@ -26,7 +26,11 @@ public class JeopardyGame extends GameTemplate {
     protected void setup() {
         System.out.println("Welcome to Jeopardy!");
 
+        logger = new Logger(caseId);
+
         GameReportGenerator report = new GameReportGenerator(caseId);
+
+        notifier.attach(logger);
         notifier.attach(report);
 
        
@@ -170,15 +174,7 @@ private Question askQuestion(Player player, String category) {
                 java.time.LocalDateTime.now().toString(), q.getCategory(), q.getValue(),
                 answer, result, player.getScore(), q.getQuestionText(), change);
 
-     notifier.notifyObservers(e);
-
-        logger.logEvent(player.getId(), 
-                "Answer Question",
-                q.getCategory(), 
-                q.getValue(), 
-                answer, 
-                result,
-                player.getScore());
+        notifier.notifyObservers(e);
 
         notifier.notifyObservers(new Event(caseId, "System", "Score Updated",
                 java.time.LocalDateTime.now().toString(), "", 0, "", "Success", player.getScore(), "", 0));
@@ -236,7 +232,6 @@ private Question askQuestion(Player player, String category) {
         notifier.notifyObservers(new Event(caseId, "System", "Exit Game",
                 java.time.LocalDateTime.now().toString(), "", 0, "", "Success", 0, "", 0));
 
-        logger.writeToCSV();
     }
 
     @Override

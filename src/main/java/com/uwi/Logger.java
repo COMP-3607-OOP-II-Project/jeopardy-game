@@ -24,6 +24,8 @@ public class Logger implements GameObserver {
 
     @Override
     public void update(Event event) {
+        events.add(event);
+
         try (PrintWriter pw = new PrintWriter(new FileWriter(csvFile, true))) {
 
            String categoryStr;
