@@ -84,7 +84,9 @@ public class Logger implements GameObserver {
                 questionValue,
                 answer,
                 result,
-                scoreAfter
+                scoreAfter,
+                null,
+                0
         );
 
         update(event);
