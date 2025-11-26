@@ -57,7 +57,7 @@ public class GameReportGenerator implements GameObserver {
             pw.println("Final Scores:");
           
             for (String pid : playerIds) {
-                if (pid.equals("System")) continue;
+                if (pid.equals("System")) {
                 int finalScore = 0;
                 for (Event e : events) {
                     if (e.playerId.equals(pid)) {
@@ -66,6 +66,7 @@ public class GameReportGenerator implements GameObserver {
                 }
                 pw.printf("%s: %d%n", pid, finalScore);
             }
+        }
 
             System.out.println("\nSummary Report Saved: " + fileName);
         } catch (IOException e) {

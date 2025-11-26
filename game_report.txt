@@ -2,19 +2,14 @@ JEOPARDY PROGRAMMING GAME REPORT
 ================================
 Case ID: GAME001
 
-Players: System, jude
+Players: System, a
 
 Gameplay Summary:
 -----------------
-Turn 1: jude selected Variables & Data Types for 300 pts
-Question: What is the value of x after int x = 5/2;?
-Answer: A - Correct (+300 pts)
-Score after turn: jude = 300
-
-Turn 2: jude selected File Handling for 500 pts
-Question: What happens if a file fails to open?
-Answer: A - Wrong (-500 pts)
-Score after turn: jude = -200
+Turn 1: a selected Variables & Data Types for 100 pts
+Question: Which of the following declares an integer variable in C++?
+Answer: a - Correct (+100 pts)
+Score after turn: a = 100
 
 Final Scores:
-jude: -200
+System: 100
