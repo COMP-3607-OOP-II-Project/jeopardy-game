@@ -10,7 +10,7 @@ public class GameEventNotifier implements GameSubject {
     @Override
     public void attach (GameObserver o) {
         observers.add(o);
-    }
+    } 
 
     @Override
     public void detach (GameObserver o) {

@@ -38,7 +38,7 @@ public class JeopardyGame extends GameTemplate {
         players = pm.registerPlayers();
 
     
-        QuestionLoader loader = new QuestionLoader(input, notifier, caseId);
+        QuestionLoader loader = new QuestionLoader(input, notifier, caseId);  
         questions = loader.loadQuestions();
 
         
@@ -186,13 +186,13 @@ private Question askQuestion(Player player, String category) {
     private void displayQuestion(Question q) {
         System.out.println("\nQuestion: " + q.getQuestionText());
         System.out.println("A: " + q.getOptionA());
-        System.out.println("B: " + q.getOptionB());
+        System.out.println("B: " + q.getOptionB()); 
         System.out.println("C: " + q.getOptionC());
         System.out.println("D: " + q.getOptionD());
     } 
 
     private String readPlayerAnswer() {
-        System.out.print("Your answer: ");
+        System.out.print("Your answer: "); 
         return input.nextLine().trim();
     }
 
