@@ -11,8 +11,13 @@ public class Event {
     public String result;
     public int scoreAfter;
 
+    public String questionText;
+    public int pointsChange;
+
+
     public Event(String caseId, String playerId, String activity, String timestamp, String category,
-                 int questionValue, String answerGiven, String result, int scoreAfter) {
+                 int questionValue, String answerGiven, String result, int scoreAfter,
+                  String questionText, int pointsChange) {
         this.caseId = caseId;
         this.playerId = playerId;
         this.activity = activity;
@@ -22,5 +27,7 @@ public class Event {
         this.answerGiven = answerGiven;
         this.result = result;
         this.scoreAfter = scoreAfter;
+        this.questionText = questionText;
+        this.pointsChange = pointsChange;
     }
 }
