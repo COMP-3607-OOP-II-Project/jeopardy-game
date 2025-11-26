@@ -13,6 +13,7 @@ public class JeopardyGame extends GameTemplate {
     private final List<TurnRecord> turnRecords = new ArrayList<>();
     private Logger logger;
     private final String caseId = "GAME001";
+    private GameEventNotifier notifier = new GameEventNotifier();
 
     public JeopardyGame() {}
 
@@ -29,18 +30,20 @@ public class JeopardyGame extends GameTemplate {
         questions = loader.loadQuestions();
 
         System.out.println("Setup complete. Good luck!\n");
-    }
+    } 
 
     @Override
     protected void playTurn() {
        
         while (!isGameOver()) {
             for (Player p : players) {
-                if (isGameOver()) break;
+                if (!isGameOver()) {
                 runPlayerTurn(p);
             }
         }
     }
+} 
+
 
     private void runPlayerTurn(Player player) {
         System.out.println("\n" + player.getId() + ", your turn.");
@@ -60,7 +63,6 @@ public class JeopardyGame extends GameTemplate {
     }
 
     private List<String> getRemainingCategories() {
-        // preserve order
         Set<String> set = new LinkedHashSet<>();
         for (Question q : questions) {
             if (!q.isAnswered()) {
@@ -111,17 +113,41 @@ public class JeopardyGame extends GameTemplate {
         String answer = readPlayerAnswer();
 
         boolean correct = isCorrectAnswer(q, answer);
-        int change = correct ? q.getValue() : -q.getValue();
-
+        int change;
+        if (correct) {
+            change = q.getValue();
+        } else {
+           change = -q.getValue();
+        }
+ 
         applyAnswerEffects(player, q, change);
 
-        String result = correct ? "Correct" : "Wrong";
+        String result;
+        if (correct) {
+           result = "Correct";
+        } else {
+        result = "Wrong"; 
+        }
 
-        logger.logEvent(player.getId(),
+        Event e = new Event(
+        caseId,
+        player.getId(),
+        "Answer Question",
+        java.time.LocalDateTime.now().toString(), 
+        q.getCategory(),
+        q.getValue(),    
+        answer,
+        result,
+        player.getScore()
+); 
+
+     notifier.notifyObservers(e);
+
+        logger.logEvent(player.getId(), 
                 "Answer Question",
-                q.getCategory(),
-                q.getValue(),
-                answer,
+                q.getCategory(), 
+                q.getValue(), 
+                answer, 
                 result,
                 player.getScore());
 
@@ -138,7 +164,7 @@ public class JeopardyGame extends GameTemplate {
         System.out.println("B: " + q.getOptionB());
         System.out.println("C: " + q.getOptionC());
         System.out.println("D: " + q.getOptionD());
-    }
+    } 
 
     private String readPlayerAnswer() {
         System.out.print("Your answer: ");

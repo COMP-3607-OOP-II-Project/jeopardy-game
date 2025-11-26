@@ -7,7 +7,7 @@ public class PlayerTest {
 
     @Test
     public void testScoreUpdatesCorrectly() {
-        Player p = new Player("Ana");
+        Player p = new Player("Jude");
         assertEquals(0, p.getScore());
 
         p.updateScore(100);

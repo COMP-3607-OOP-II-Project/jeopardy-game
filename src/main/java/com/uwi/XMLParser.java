@@ -25,9 +25,8 @@ public class XMLParser implements QuestionParser {
 
             Document doc = builder.parse(file);
             doc.getDocumentElement();
-            //.normalize()
 
-            return doc;
+            return doc; 
 
         } catch (Exception e) {
             throw new IOException("Error parsing XML", e);

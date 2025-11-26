@@ -12,18 +12,6 @@ public class CSVParser implements QuestionParser {
         return parseLines(lines);
     }
 
-    /*public List<String> readLines(String filePath) throws IOException {
-
-        List<String> lines = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            reader.readLine(); 
-            while ((line = reader.readLine()) != null) {
-                lines.add(line);
-            }
-        }
-        return lines;
-    }*/
-
     public List<String> readLines(String filePath) throws FileNotFoundException {
 
         List<String> lines = new ArrayList<>();
@@ -55,14 +43,6 @@ public class CSVParser implements QuestionParser {
        } 
     return questions;
     }
-
-    /*public boolean isValidLine(String[] parts, String line) {
-        if (parts.length < 8) {
-            System.out.println("Invalid line (expected 8 fields): " + line);
-            return false;
-        }
-        return true;
-    }*/
 
     public Question parseQuestion(String[] parts) {
 

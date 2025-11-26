@@ -39,8 +39,8 @@ public class PlayerManager {
             try {
                 count = Integer.parseInt(input.nextLine().trim());
             } catch (NumberFormatException e) {
-                // ignore, just retry
-            }
+                
+            } 
 
             if (count < 1 || count > 4) {
                 System.out.println("Oops! That's not valid. Try again.");

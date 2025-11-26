@@ -15,20 +15,6 @@ public class JSONParser implements QuestionParser {
         return parseArray(array);
     }
 
-    /*private String readFile(String filePath) throws IOException {
-
-        StringBuilder text = new StringBuilder();
-        BufferedReader reader = new BufferedReader(new FileReader(filePath));
-        String line;
-
-        while ((line = reader.readLine()) != null) {
-            text.append(line);
-        }
-
-        reader.close();
-        return text.toString();
-    }*/
-
     private String readFile(String filePath) throws FileNotFoundException {
 
          Scanner scan = new Scanner(new File(filePath));

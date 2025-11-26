@@ -9,8 +9,10 @@ public class GameBoard {
         for (String cat : categories) {
             List<Question> col = new ArrayList<>();
             for (Question q : questions) {
-                if (q.getCategory().equals(cat)) col.add(q);
+                if (q.getCategory().equals(cat)) {
+                    col.add(q);
             }
+        }
             grid.add(col);
         }
         return grid;
@@ -21,7 +23,9 @@ public class GameBoard {
 
         System.out.println("\n================ QUESTION BOARD ================");
         System.out.print("|");
-        for (String cat : categories) System.out.printf(" %-15s |", cat);
+        for (String cat : categories) {
+            System.out.printf(" %-15s |", cat);
+        }
         System.out.println();
         System.out.println("-".repeat(categories.size() * 19));
 
@@ -29,9 +33,12 @@ public class GameBoard {
             System.out.print("|");
             for (int c = 0; c < categories.size(); c++) {
                 List<Question> col = grid.get(c);
-                String text = (r < col.size() && !col.get(r).isAnswered())
-                        ? col.get(r).getValue() + " pts"
-                        : " ";
+                String text;
+                 if (r < col.size() && !col.get(r).isAnswered()) {
+                     text = col.get(r).getValue() + " pts";
+                 } else {
+                   text = " ";
+                 } 
                 System.out.printf(" %-15s |", text);
             }
             System.out.println();

@@ -15,8 +15,7 @@ public class QuestionLoader {
         this.logger = logger;
     }
 
-    public List<Question> loadQuestions() {
-        // Map file type options to loaders
+     public List<Question> loadQuestions() {
         Map<Integer, CommandLoader> options = Map.of(
             1, new CSVCommandLoader("sample_game_CSV.csv"),
             2, new XMLCommandLoader("sample_game_XML.xml"),
@@ -67,5 +66,5 @@ public class QuestionLoader {
             System.exit(1);
             return List.of(); 
         }
-    }
+    } 
 }

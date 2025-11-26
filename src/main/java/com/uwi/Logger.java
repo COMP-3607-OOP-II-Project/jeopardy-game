@@ -69,25 +69,44 @@ public class Logger implements GameObserver {
     }
 
     public void writeToCSV() {
-        try (PrintWriter pw = new PrintWriter(new FileWriter(csvFile, true))) {
-            for (Event e : events) {
-                pw.printf("%s,%s,%s,%s,%s,%d,%s,%s,%d%n",
-                        e.caseId,
-                        e.playerId,
-                        e.activity,
-                        e.timestamp,
-                        e.category != null ? e.category : "",
-                        e.questionValue,
-                        e.answerGiven != null ? e.answerGiven : "",
-                        e.result != null ? e.result : "",
-                        e.scoreAfter
-                );
-                
+    try (PrintWriter pw = new PrintWriter(new FileWriter(csvFile, true))) {
+        for (Event e : events) {
+            String category;
+            if (e.category != null) {
+                category = e.category;
+            } else {
+                category = "";
             }
-            System.out.println("\nGame Event Log Saved: " + csvFile);
-            events.clear();
-        } catch (IOException ex) {
-            System.out.println("Error writing events to CSV: " + ex.getMessage());
+
+            String answerGiven;
+            if (e.answerGiven != null) {
+                answerGiven = e.answerGiven;
+            } else {
+                answerGiven = "";
+            }
+
+            String result;
+            if (e.result != null) {
+                result = e.result;
+            } else {
+                result = "";
+            }
+
+            pw.printf("%s,%s,%s,%s,%s,%d,%s,%s,%d%n",
+                    e.caseId,
+                    e.playerId,
+                    e.activity,
+                    e.timestamp,
+                    category,
+                    e.questionValue,
+                    answerGiven,
+                    result,
+                    e.scoreAfter
+            );
         }
+    } catch (IOException ex) {
+        System.out.println("Error writing to CSV: " + ex.getMessage());
     }
+}
+
 }
