@@ -2,14 +2,14 @@ JEOPARDY PROGRAMMING GAME REPORT
 ================================
 Case ID: GAME001
 
-Players: System, a
+Players: jude
 
 Gameplay Summary:
 -----------------
-Turn 1: a selected Variables & Data Types for 100 pts
-Question: Which of the following declares an integer variable in C++?
-Answer: a - Correct (+100 pts)
-Score after turn: a = 100
+Turn 1: jude selected Variables & Data Types for 200 pts
+Question: Which data type is used to store a single character?
+Answer: b - Correct (+200 pts)
+Score after turn: jude = 200
 
 Final Scores:
-System: 100
+jude: 200
