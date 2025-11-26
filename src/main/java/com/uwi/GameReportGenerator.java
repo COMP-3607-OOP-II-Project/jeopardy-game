@@ -19,7 +19,7 @@ public class GameReportGenerator {
     }
 
     public void generate() {
-        String fileName = caseId + "_game_report.txt";
+        String fileName = "game_report.txt";
 
         try(PrintWriter pw = new PrintWriter(new FileWriter(fileName))) {
             pw.println("JEOPARDY PROGRAMMING GAME REPORT");

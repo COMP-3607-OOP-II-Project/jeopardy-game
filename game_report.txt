@@ -2,9 +2,9 @@ JEOPARDY PROGRAMMING GAME REPORT
 ================================
 Case ID: GAME001
 
-Players: anya
+Players: a
 
 Gameplay Summary: 
 -----------------
 Final Scores:
-anya: 0
+a: 0

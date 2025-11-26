@@ -17,6 +17,11 @@ public class JeopardyGame extends GameTemplate {
 
     public JeopardyGame() {}
 
+    
+    public void setQuestions(List<Question> questions) {
+            this.questions = questions;
+    }  
+
     @Override
     protected void setup() {
         System.out.println("Welcome to Jeopardy!");
@@ -28,6 +33,10 @@ public class JeopardyGame extends GameTemplate {
 
         QuestionLoader loader = new QuestionLoader(input, logger);
         questions = loader.loadQuestions();
+
+        for (Question q : questions) {
+              q.setAnswered(false);
+        }
 
         System.out.println("Setup complete. Good luck!\n");
     } 
@@ -43,7 +52,6 @@ public class JeopardyGame extends GameTemplate {
         }
     }
 } 
-
 
     private void runPlayerTurn(Player player) {
         System.out.println("\n" + player.getId() + ", your turn.");
@@ -73,39 +81,55 @@ public class JeopardyGame extends GameTemplate {
     }
 
     private String askCategory(Player player, List<String> categories) {
-        
-        for (int i = 0; i < categories.size(); i++) {
-            System.out.println((i + 1) + ". " + categories.get(i));
-        }
 
-        int pos = askNumber("Choose a category: ", 1, categories.size());
-        String chosen = categories.get(pos - 1);
-
-        logger.logEvent(player.getId(), "Select Category", chosen, 0, "", "", player.getScore());
-        return chosen;
+    for (int i = 0; i < categories.size(); i++) {
+        System.out.println((i + 1) + ". " + categories.get(i));
     }
 
-    private Question askQuestion(Player player, String category) {
-        List<Question> list = new ArrayList<>();
+    System.out.print("Choose a category (or Q to quit): ");  
+    String entry = input.nextLine().trim();
 
-        for (Question q : questions) {
-            if (!q.isAnswered() && q.getCategory().equals(category)) {
-                list.add(q);
-            }
-        }
-
-        System.out.println("Available questions:");
-        for (int i = 0; i < list.size(); i++) {
-            Question tmp = list.get(i);
-            System.out.println((i + 1) + ". " + tmp.getValue() + " pts");
-        }
-
-        int idx = askNumber("Pick a question: ", 1, list.size());
-        Question chosen = list.get(idx - 1);
-
-        logger.logEvent(player.getId(), "Select Question", category, chosen.getValue(), "", "", player.getScore());
-        return chosen;
+    if (entry.equalsIgnoreCase("Q")) {
+        endGame();
+        System.exit(0);
     }
+
+    int pos = Integer.parseInt(entry);
+    String chosen = categories.get(pos - 1);
+
+    logger.logEvent(player.getId(), "Select Category", chosen, 0, "", "", player.getScore());
+    return chosen;
+}
+
+private Question askQuestion(Player player, String category) {
+    List<Question> list = new ArrayList<>();
+
+    for (Question q : questions) {
+        if (!q.isAnswered() && q.getCategory().equals(category)) {
+            list.add(q);
+        }
+    }
+
+    System.out.println("Available questions:");
+    for (int i = 0; i < list.size(); i++) {
+        Question tmp = list.get(i);
+        System.out.println((i + 1) + ". " + tmp.getValue() + " pts");
+    }
+
+    System.out.print("Pick a question (or Q to quit): "); 
+    String entry = input.nextLine().trim();
+
+    if (entry.equalsIgnoreCase("Q")) {
+        endGame();
+        System.exit(0);
+    }
+
+    int idx = Integer.parseInt(entry);
+    Question chosen = list.get(idx - 1);
+
+    logger.logEvent(player.getId(), "Select Question", category, chosen.getValue(), "", "", player.getScore());
+    return chosen;
+}
 
     
     private void showAndProcessQuestion(Player player, Question q) {
@@ -139,7 +163,7 @@ public class JeopardyGame extends GameTemplate {
         answer,
         result,
         player.getScore()
-); 
+        ); 
 
      notifier.notifyObservers(e);
 

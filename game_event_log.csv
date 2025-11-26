@@ -1,7 +1,7 @@
 Case_ID,Player_ID,Activity,Timestamp,Category,Question_Value,Answer_Given,Result,Score_After_Play
-GAME001,System,Select Player Count,2025-11-26T02:02:42.321148,,0,,Success,0
-GAME001,System,Enter Player Name,2025-11-26T02:02:43.265136800,,0,,Success,0
-GAME001,System,Enter Player Name,2025-11-26T02:02:43.944860300,,0,,Success,0
-GAME001,System,Enter Player Name,2025-11-26T02:02:44.893506,,0,,Success,0
-GAME001,System,Enter Player Name,2025-11-26T02:02:45.397804,,0,,Success,0
-GAME001,System,Load File,2025-11-26T02:02:46.852763200,,0,,Success,0
+GAME001,System,Select Player Count,2025-11-26T14:02:43.027944100,,0,,Success,0
+GAME001,System,Enter Player Name,2025-11-26T14:02:44.294749700,,0,,Success,0
+GAME001,System,Load File,2025-11-26T14:02:45.567215200,,0,,Success,0
+GAME001,System,Exit Game,2025-11-26T14:02:47.092308700,,0,,N/A,0
+GAME001,System,Generate Event Log,2025-11-26T14:02:47.093407300,,0,,Success,0
+GAME001,System,Generate Report,2025-11-26T14:02:47.094475500,,0,,Success,0
