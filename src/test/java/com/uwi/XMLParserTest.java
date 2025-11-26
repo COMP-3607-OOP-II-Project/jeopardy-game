@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 public class XMLParserTest {
 
     @Test
-    public void testXMLParserParsesCorrectly() throws Exception {
+    public void XMLQuestions() throws Exception {
 
         XMLParser parser = new XMLParser();
 

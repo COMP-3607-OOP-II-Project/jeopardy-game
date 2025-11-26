@@ -8,7 +8,7 @@ import java.util.List;
 public class GameBoardTest {
 
     @Test
-    public void testBuildGrid() {
+    public void testGrid() {
         List<Question> questions = new ArrayList<>();
         questions.add(new Question("Variables and Data Types", 100, "Q1", "A", "A","B","C","D"));
         questions.add(new Question("Functions", 200, "Q2", "A", "A","B","C","D"));

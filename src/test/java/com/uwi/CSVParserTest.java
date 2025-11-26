@@ -8,7 +8,7 @@ import org.junit.Test;
 public class CSVParserTest {
 
     @Test
-    public void testLoadQuestionsFromCSV() throws Exception {
+    public void CSVQuestions() throws Exception {
 
         String filePath = "sample_game_CSV.csv";
 

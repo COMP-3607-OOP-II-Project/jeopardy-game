@@ -6,7 +6,7 @@ import org.junit.Test;
 public class QuestionTest {
 
     @Test
-    public void testSetAnswered() {
+    public void questionAnswered() {
         Question q = new Question(
                 "Math", 200, "2+2=?",
                 "1", "2", "3", "4",

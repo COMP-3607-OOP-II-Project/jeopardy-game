@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 public class CSVLoggingTest {
 
     @Test
-    public void testEventLoggedToCSVWithCorrectFormat() throws Exception {
+    public void CSVlogger() throws Exception {
         Logger logger = new Logger("GAME001");
 
         

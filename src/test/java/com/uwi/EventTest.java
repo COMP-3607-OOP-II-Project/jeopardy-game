@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 public class EventTest {
 
     @Test
-    public void testEventInitialization() {
+    public void testEvent() {
         Event e = new Event("GAME001", "jude", "Answer Question", "2025-11-26T12:00", "Variables and Data Types", 100, "A", "Correct", 100);
 
         assertEquals("GAME001", e.caseId);

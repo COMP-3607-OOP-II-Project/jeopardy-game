@@ -6,7 +6,7 @@ import org.junit.Test;
 public class PlayerTest {
 
     @Test
-    public void testScoreUpdatesCorrectly() {
+    public void scoreUpdate() {
         Player p = new Player("Jude");
         assertEquals(0, p.getScore());
 

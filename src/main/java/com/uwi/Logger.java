@@ -26,17 +26,39 @@ public class Logger implements GameObserver {
     public void update(Event event) {
         try (PrintWriter pw = new PrintWriter(new FileWriter(csvFile, true))) {
 
+           String categoryStr;
+           if (event.category != null) {
+               categoryStr = event.category;
+            } else {
+              categoryStr = "";
+            }
+
+            String answerGivenStr;
+            if (event.answerGiven != null) {
+                answerGivenStr = event.answerGiven;
+            } else {
+               answerGivenStr = "";
+            }
+
+            String resultStr;
+            if (event.result != null) {
+                resultStr = event.result;
+            } else {
+              resultStr = "";
+            }
+
             pw.printf("%s,%s,%s,%s,%s,%d,%s,%s,%d%n",
-                    event.caseId,
-                    event.playerId,
-                    event.activity,
-                    event.timestamp,
-                    event.category != null ? event.category : "",
-                    event.questionValue,
-                    event.answerGiven != null ? event.answerGiven : "",
-                    event.result != null ? event.result : "",
-                    event.scoreAfter
-            );
+                      event.caseId,
+                      event.playerId,
+                      event.activity,
+                      event.timestamp,
+                      categoryStr,
+                      event.questionValue,
+                      answerGivenStr,
+                      resultStr,
+                      event.scoreAfter
+             );
+
 
         } catch (IOException e) {
             System.out.println("File could not be updated.");

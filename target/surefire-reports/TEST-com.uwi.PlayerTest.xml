@@ -15,7 +15,7 @@
     <property name="user.country" value="TT"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-25\bin"/>
-    <property name="sun.java.command" value="C:\Users\anyaa\AppData\Local\Temp\surefire2888428865267369465\surefirebooter15459998965850777059.jar C:\Users\anyaa\AppData\Local\Temp\surefire2888428865267369465 2025-11-26T00-36-37_627-jvmRun1 surefire16276970417568633407tmp surefire_010542132207770141635tmp"/>
+    <property name="sun.java.command" value="C:\Users\anyaa\AppData\Local\Temp\surefire9574939002831984570\surefirebooter11436472063318695280.jar C:\Users\anyaa\AppData\Local\Temp\surefire9574939002831984570 2025-11-26T17-04-00_313-jvmRun1 surefire17619488138715988088tmp surefire_06437669617099042118tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="test" value="com.uwi.PlayerTest"/>
     <property name="surefire.test.class.path" value="C:\Users\anyaa\Downloads\jeopardy-game\target\test-classes;C:\Users\anyaa\Downloads\jeopardy-game\target\classes;C:\Users\anyaa\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\anyaa\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\anyaa\.m2\repository\org\json\json\20240303\json-20240303.jar;"/>
@@ -31,7 +31,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\anyaa\AppData\Local\Temp\surefire2888428865267369465\surefirebooter15459998965850777059.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\anyaa\AppData\Local\Temp\surefire9574939002831984570\surefirebooter11436472063318695280.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="25.0.1+8-LTS-27"/>
@@ -61,5 +61,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="testScoreUpdatesCorrectly" classname="com.uwi.PlayerTest" time="0.002"/>
+  <testcase name="scoreUpdate" classname="com.uwi.PlayerTest" time="0.002"/>
 </testsuite>

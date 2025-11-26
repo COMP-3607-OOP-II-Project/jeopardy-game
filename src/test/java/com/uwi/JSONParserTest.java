@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 public class JSONParserTest {
 
 @Test
-public void testLoadQuestionsFromJSON() throws Exception {
+public void JSONQuestions() throws Exception {
     
     String filePath = "sample_game_JSON.json";
 
