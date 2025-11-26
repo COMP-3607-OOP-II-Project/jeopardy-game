@@ -210,18 +210,6 @@ private Question askQuestion(Player player, String category) {
     }
 
 
-    private int askNumber(String prompt, int min, int max) {
-        int num = -1;
-        while (num < min || num > max) {
-            try {
-                System.out.print(prompt);
-                num = Integer.parseInt(input.nextLine());
-            } catch (Exception ex) {
-                System.out.println("Invalid input. Try again.");
-            }
-        }
-        return num;
-    }
 
     @Override
     protected void endGame() {
