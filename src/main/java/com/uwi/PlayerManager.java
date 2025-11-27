@@ -14,7 +14,7 @@ public class PlayerManager {
     private Scanner input;
     private GameEventNotifier notifier;
     private String caseId;
-
+  //Creates new player manager
     public PlayerManager(Scanner input, GameEventNotifier notifier, String caseId) {
         this.input = input;
         this.notifier = notifier;
