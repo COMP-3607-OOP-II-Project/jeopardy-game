@@ -6,6 +6,10 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
+/*
+  Implementation of a Jeopardy-style game.
+  Extends the GameTemplate abstract class and defines the specific game logic.
+ */
 public class JeopardyGame extends GameTemplate {
 
     private final Scanner input = new Scanner(System.in);
@@ -21,7 +25,10 @@ public class JeopardyGame extends GameTemplate {
     public void setQuestions(List<Question> questions) {
             this.questions = questions;
     }  
-
+  
+    /*
+      Setup phase of the game: initializes players, questions, and observers.
+     */
     @Override
     protected void setup() {
         System.out.println("Welcome to Jeopardy!");
@@ -56,6 +63,9 @@ public class JeopardyGame extends GameTemplate {
         System.out.println("Setup complete. Good luck!\n");
     } 
 
+    /*
+      Main loop for playing turns until the game ends.
+     */
     @Override
     protected void playTurn() {
        
@@ -118,7 +128,7 @@ public class JeopardyGame extends GameTemplate {
 
     return chosen;
 }
-
+// Prompts the player to select a question from the chosen category
 private Question askQuestion(Player player, String category) {
     List<Question> list = new ArrayList<>();
 
@@ -151,7 +161,7 @@ private Question askQuestion(Player player, String category) {
     return chosen;
 }
 
-    
+     // Displays the question and updates player score based on answer
     private void showAndProcessQuestion(Player player, Question q) {
         displayQuestion(q);
         String answer = readPlayerAnswer();
@@ -208,7 +218,9 @@ private Question askQuestion(Player player, String category) {
         player.updateScore(change);
     }
 
-
+      /*
+      Ends the game, displays final scores, and triggers report generation.
+     */
 
     @Override
     protected void endGame() {
@@ -236,7 +248,7 @@ private Question askQuestion(Player player, String category) {
                 java.time.LocalDateTime.now().toString(), "", 0, "", "Success", 0, "", 0));
 
     }
-
+  // Checks if all questions have been answered
     @Override
     protected boolean isGameOver() {
         
