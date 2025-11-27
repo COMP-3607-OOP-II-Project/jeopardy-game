@@ -16,7 +16,7 @@ public class Question {
     private String optionD;
     private String correctAnswer;
     private boolean answered;
-
+ // creates new Question
     public Question(String category, int value, String question, String optionA, String optionB, String optionC, String optionD, String correctAnswer) {
 
         this.category = category;
