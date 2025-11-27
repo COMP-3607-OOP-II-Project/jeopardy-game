@@ -15,7 +15,7 @@ public class JSONParser implements QuestionParser {
         return parseArray(array);
     }
 
-    private String readFile(String filePath) throws FileNotFoundException {
+    public String readFile(String filePath) throws FileNotFoundException {
 
          Scanner scan = new Scanner(new File(filePath));
          scan.useDelimiter("\\Z"); 
@@ -25,10 +25,10 @@ public class JSONParser implements QuestionParser {
          } 
         scan.close();
         return content;
-   }
+   } 
 
 
-    private List<Question> parseArray(JSONArray array) {
+    public List<Question> parseArray(JSONArray array) {
 
         List<Question> questions = new ArrayList<>();
 
@@ -40,7 +40,7 @@ public class JSONParser implements QuestionParser {
         return questions;
     }
 
-    private Question parseQuestion(JSONObject obj) {
+    public Question parseQuestion(JSONObject obj) {
 
         String category = obj.getString("Category");
         int value = obj.getInt("Value");
