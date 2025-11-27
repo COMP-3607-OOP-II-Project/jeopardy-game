@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/*
+  Manages the registration of players for the game.
+  Handles user input for player names and number of players,
+  and notifies observers about game events.
+ */
 public class PlayerManager {
 
     private Scanner input;
@@ -15,6 +20,11 @@ public class PlayerManager {
         this.notifier = notifier;
         this.caseId = caseId;
     }
+   /*
+      Registers players for the game by asking for the total number
+      of players and then prompting for each player's name.
+      Each registered player is added to a list and an event is notified.
+     */
 
     public List<Player> registerPlayers() {
         int totalPlayers = askForPlayerCount();
@@ -33,7 +43,7 @@ public class PlayerManager {
 
         return players;
     }
-
+//Prompts the user to enter the number of players (1-4).
     private int askForPlayerCount() {
         int count = -1;
 
