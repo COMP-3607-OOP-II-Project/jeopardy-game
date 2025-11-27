@@ -1,12 +1,16 @@
 Case_ID,Player_ID,Activity,Timestamp,Category,Question_Value,Answer_Given,Result,Score_After_Play
-GAME001,System,Select Player Count,2025-11-26T19:13:36.616359700,,0,,Success,0
-GAME001,System,Enter Player Name,2025-11-26T19:13:39.376668800,,0,,Success,0
-GAME001,System,Load File,2025-11-26T19:13:40.739485100,,0,,Success,0
-GAME001,System,File Loaded Successfully,2025-11-26T19:13:40.739485100,,0,,Success,0
-GAME001,jude,Select Category,2025-11-26T19:13:41.609058700,Variables & Data Types,0,,Success,0
-GAME001,jude,Select Question,2025-11-26T19:13:42.717905400,Variables & Data Types,200,,Success,0
-GAME001,jude,Answer Question,2025-11-26T19:13:45.326492300,Variables & Data Types,200,b,Correct,200
-GAME001,System,Score Updated,2025-11-26T19:13:45.326492300,,0,,Success,200
-GAME001,System,Generate Event Log,2025-11-26T19:13:47.630723,,0,,Success,0
-GAME001,System,Generate Report,2025-11-26T19:13:47.631722700,,0,,Success,0
-GAME001,System,Exit Game,2025-11-26T19:13:47.631722700,,0,,Success,0
+GAME001,System,Select Player Count,2025-11-26T19:20:02.636497400,,0,,Success,0
+GAME001,System,Enter Player Name,2025-11-26T19:20:04.580301700,,0,,Success,0
+GAME001,System,Load File,2025-11-26T19:20:05.717305300,,0,,Success,0
+GAME001,System,File Loaded Successfully,2025-11-26T19:20:05.717305300,,0,,Success,0
+GAME001,anya,Select Category,2025-11-26T19:20:08.904010800,Variables & Data Types,0,,Success,0
+GAME001,anya,Select Question,2025-11-26T19:20:11.074028900,Variables & Data Types,200,,Success,0
+GAME001,anya,Answer Question,2025-11-26T19:20:14.855628800,Variables & Data Types,200,b,Correct,200
+GAME001,System,Score Updated,2025-11-26T19:20:14.855628800,,0,,Success,200
+GAME001,anya,Select Category,2025-11-26T19:20:26.518645900,Control Structures,0,,Success,200
+GAME001,anya,Select Question,2025-11-26T19:20:28.236482400,Control Structures,300,,Success,200
+GAME001,anya,Answer Question,2025-11-26T19:20:30.823695400,Control Structures,300,a,Wrong,-100
+GAME001,System,Score Updated,2025-11-26T19:20:30.823695400,,0,,Success,-100
+GAME001,System,Generate Event Log,2025-11-26T19:20:33.033978100,,0,,Success,0
+GAME001,System,Generate Report,2025-11-26T19:20:33.034982200,,0,,Success,0
+GAME001,System,Exit Game,2025-11-26T19:20:33.034982200,,0,,Success,0

@@ -60,8 +60,7 @@ public class XMLParser implements QuestionParser {
 
         String correctAnswer = getText(element, "CorrectAnswer");
 
-        return new Question(
-            category, value, questionText, optionA, optionB, optionC, optionD, correctAnswer);
+        return new Question(category, value, questionText, optionA, optionB, optionC, optionD, correctAnswer);
     } 
 
     private String getText(Element element, String tagName) {
