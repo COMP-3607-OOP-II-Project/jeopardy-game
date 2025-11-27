@@ -1,9 +1,15 @@
 package com.uwi;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
+/*
+  Represents the game board for the quiz game.
+  Provides methods to build and display a grid of questions
+  organized by category and point value.
+ */
 public class GameBoard {
-
+    //Builds a grid of questions grouped by categories.
     public static List<List<Question>> buildGrid(List<Question> questions, List<String> categories) {
         List<List<Question>> grid = new ArrayList<>();
         for (String cat : categories) {
@@ -17,7 +23,7 @@ public class GameBoard {
         }
         return grid;
     }
-
+//Prints the game board to the console
     public static void printGrid(List<String> categories, List<List<Question>> grid) {
         int maxRows = grid.stream().mapToInt(List::size).max().orElse(0);
 
