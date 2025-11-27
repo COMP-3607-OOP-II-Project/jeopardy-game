@@ -6,7 +6,7 @@ package com.uwi;
 public class Player {
     private String id;
     private int score;
-
+// Creates a new Player
     public Player(String id) {
         this.id = id;
         this.score = 0;
