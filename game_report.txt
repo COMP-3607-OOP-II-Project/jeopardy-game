@@ -2,19 +2,8 @@ JEOPARDY PROGRAMMING GAME REPORT
 ================================
 Case ID: GAME001
 
-Players: anya
+Players: 
 
 Gameplay Summary:
 -----------------
-Turn 1: anya selected Variables & Data Types for 200 pts
-Question: Which data type is used to store a single character?
-Answer: b - Correct (+200 pts)
-Score after turn: anya = 200
-
-Turn 2: anya selected Control Structures for 300 pts
-Question: Which loop always executes at least once?
-Answer: a - Wrong (-300 pts)
-Score after turn: anya = -100
-
 Final Scores:
-anya: -100

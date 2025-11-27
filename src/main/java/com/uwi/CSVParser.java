@@ -6,13 +6,13 @@ import java.util.*;
 public class CSVParser implements QuestionParser {
 
     @Override
-    public List<Question> parseQuestions(String filePath) throws IOException {
+    public List<Question> parseQuestions(String filePath) throws IOException { // Reads all lines from a CSV file (via readLines) and converts them into a list of Question objects using parseLines
 
         List<String> lines = readLines(filePath);
         return parseLines(lines);
     }
 
-    public List<String> readLines(String filePath) throws FileNotFoundException {
+    public List<String> readLines(String filePath) throws FileNotFoundException { //Reads all lines from a CSV file and returns them as a list.
 
         List<String> lines = new ArrayList<>();
         try (Scanner scan = new Scanner(new File(filePath))) {
@@ -27,7 +27,7 @@ public class CSVParser implements QuestionParser {
     return lines;
     }
 
-    public List<Question> parseLines(List<String> lines) {
+    public List<Question> parseLines(List<String> lines) { //Converts each CSV line into a Question object, printing a message for invalid lines.
 
         List<Question> questions = new ArrayList<>();
 
@@ -44,7 +44,7 @@ public class CSVParser implements QuestionParser {
     return questions;
     } 
 
-    public Question parseQuestion(String[] parts) {
+    public Question parseQuestion(String[] parts) { // Converts an array of 8 strings into a Question instance, trimming whitespace and formatting the correct answer.
 
         String category = parts[0].trim();
         int value = Integer.parseInt(parts[1].trim());

@@ -65,6 +65,6 @@ public class GameReportTest {
         assertTrue(content.contains("Which of the following declares an integer variable in C++?"));
         assertTrue(content.contains("Which statement is used to make a decision?"));
         assertTrue(content.contains("Final Scores:"));
-        assertTrue(content.contains("jude: 200") || content.contains("jude: 100")); // score depending on your logic
+        assertTrue(content.contains("jude: 200") || content.contains("jude: 100")); 
     }
 }

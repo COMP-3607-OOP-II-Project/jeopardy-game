@@ -8,14 +8,14 @@ import org.w3c.dom.*;
 public class XMLParser implements QuestionParser {
 
     @Override
-    public List<Question> parseQuestions(String filePath) throws IOException {
+    public List<Question> parseQuestions(String filePath) throws IOException { //  Loads an XML document from filePath, extracts all <QuestionItem> elements, and converts them into a list of Question objects
 
         Document doc = loadDoc(filePath);
         NodeList nodes = doc.getElementsByTagName("QuestionItem");
         return getQuestions(nodes);
     }
 
-    public Document loadDoc(String filePath) throws IOException {
+    public Document loadDoc(String filePath) throws IOException { // Loads an XML file into a Document object using DocumentBuilderFactory and DocumentBuilder
 
         try {
             File file = new File(filePath);
@@ -33,7 +33,7 @@ public class XMLParser implements QuestionParser {
         }
     }
 
-    public List<Question> getQuestions(NodeList nodes) {
+    public List<Question> getQuestions(NodeList nodes) { // Iterates through a NodeList of question elements, converting each to a Question object
 
         List<Question> questions = new ArrayList<>();
 
@@ -45,7 +45,7 @@ public class XMLParser implements QuestionParser {
         return questions;
     }
 
-    public Question parseQuestion(Element element) {
+    public Question parseQuestion(Element element) { // Extracts data from an element, including category, value, question text, options, and correct answer, to create a Question
 
         String category = getText(element, "Category");
         int value = Integer.parseInt(getText(element, "Value"));
@@ -63,7 +63,7 @@ public class XMLParser implements QuestionParser {
         return new Question(category, value, questionText, optionA, optionB, optionC, optionD, correctAnswer);
     } 
 
-    public String getText(Element element, String tagName) {
+    public String getText(Element element, String tagName) { // To get text content of a child element by tag name
         return element.getElementsByTagName(tagName).item(0).getTextContent();
     }
 }
