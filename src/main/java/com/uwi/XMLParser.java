@@ -20,8 +20,8 @@ public class XMLParser implements QuestionParser {
         try {
             File file = new File(filePath);
 
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
+            DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = builderFactory.newDocumentBuilder();
 
             Document doc = builder.parse(file);
             doc.getDocumentElement();
