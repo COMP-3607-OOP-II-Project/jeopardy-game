@@ -4,19 +4,27 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-
+/*
+  Handles loading questions from different file formats (CSV, XML, JSON).
+  Prompts the user to select a file type, uses the appropriate loader,
+  and notifies observers of the event.
+ */
 public class QuestionLoader {
 
     private Scanner input;
     private GameEventNotifier notifier;
     private String caseId;
-
+/*Constructs a QuestionLoader with the given input source,
+ event notifier, and case identifier. */
     public QuestionLoader(Scanner input, GameEventNotifier notifier, String caseId ) {
         this.input = input;
         this.notifier = notifier;
         this.caseId = caseId;
     }
-
+     /*
+      Prompts the user to select a file type and loads questions
+      from the chosen file using the appropriate loader.
+      */
      public List<Question> loadQuestions() {
         Map<Integer, CommandLoader> options = Map.of(
             1, new CSVCommandLoader("sample_game_CSV.csv"),
