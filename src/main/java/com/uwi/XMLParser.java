@@ -15,7 +15,7 @@ public class XMLParser implements QuestionParser {
         return getQuestions(nodes);
     }
 
-    private Document loadDoc(String filePath) throws IOException {
+    public Document loadDoc(String filePath) throws IOException {
 
         try {
             File file = new File(filePath);
@@ -33,7 +33,7 @@ public class XMLParser implements QuestionParser {
         }
     }
 
-    private List<Question> getQuestions(NodeList nodes) {
+    public List<Question> getQuestions(NodeList nodes) {
 
         List<Question> questions = new ArrayList<>();
 
@@ -45,7 +45,7 @@ public class XMLParser implements QuestionParser {
         return questions;
     }
 
-    private Question parseQuestion(Element element) {
+    public Question parseQuestion(Element element) {
 
         String category = getText(element, "Category");
         int value = Integer.parseInt(getText(element, "Value"));
@@ -63,7 +63,7 @@ public class XMLParser implements QuestionParser {
         return new Question(category, value, questionText, optionA, optionB, optionC, optionD, correctAnswer);
     } 
 
-    private String getText(Element element, String tagName) {
+    public String getText(Element element, String tagName) {
         return element.getElementsByTagName(tagName).item(0).getTextContent();
     }
 }
