@@ -77,7 +77,7 @@ public class JeopardyGame extends GameTemplate {
         }
     }
 } 
-
+   // Handles a single player's turn
     private void runPlayerTurn(Player player) {
         System.out.println("\n" + player.getId() + ", your turn.");
 
@@ -94,7 +94,7 @@ public class JeopardyGame extends GameTemplate {
 
         showAndProcessQuestion(player, q);
     }
-
+    // Returns all categories with unanswered questions
     private List<String> getRemainingCategories() {
         Set<String> set = new LinkedHashSet<>();
         for (Question q : questions) {
@@ -104,7 +104,8 @@ public class JeopardyGame extends GameTemplate {
         }
         return new ArrayList<>(set);
     }
-
+  
+    // Prompts the player to select a category
     private String askCategory(Player player, List<String> categories) {
 
     for (int i = 0; i < categories.size(); i++) {
@@ -195,7 +196,7 @@ private Question askQuestion(Player player, String category) {
         System.out.println(result + "! Your score is now " + player.getScore());
 
     }
-
+    // Prints the question and answer options
     private void displayQuestion(Question q) {
         System.out.println("\nQuestion: " + q.getQuestionText());
         System.out.println("A: " + q.getOptionA());
@@ -203,16 +204,19 @@ private Question askQuestion(Player player, String category) {
         System.out.println("C: " + q.getOptionC());
         System.out.println("D: " + q.getOptionD());
     } 
-
+     
+    // Reads the player's answer input
     private String readPlayerAnswer() {
         System.out.print("Your answer: "); 
         return input.nextLine().trim();
     }
-
+  
+    // Checks if the player's answer is correct
     private boolean isCorrectAnswer(Question q, String ans) {
         return ans.equalsIgnoreCase(q.getCorrectAnswer());
     }
 
+    // Marks the question as answered and updates player's score
     private void applyAnswerEffects(Player player, Question q, int change) {
         q.setAnswered(true);
         player.updateScore(change);
