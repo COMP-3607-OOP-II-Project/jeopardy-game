@@ -21,7 +21,7 @@ public class JeopardyGame extends GameTemplate {
 
     public JeopardyGame() {}
 
-    
+    // Sets new questions
     public void setQuestions(List<Question> questions) {
             this.questions = questions;
     }  
