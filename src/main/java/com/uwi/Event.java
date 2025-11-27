@@ -1,5 +1,9 @@
 package com.uwi;
 
+/*
+  Represents an event that occurs during the game.
+  Used to log activities such as player actions, score updates, or system events.
+ */
 public class Event {
     public String caseId;
     public String playerId;
@@ -14,7 +18,7 @@ public class Event {
     public String questionText;
     public int pointsChange;
 
-
+//Constructs a new Event with the given details.
     public Event(String caseId, String playerId, String activity, String timestamp, String category,
                  int questionValue, String answerGiven, String result, int scoreAfter,
                   String questionText, int pointsChange) {
